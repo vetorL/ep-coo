@@ -66,19 +66,8 @@ public class Main {
 		long delta;
 		long currentTime = System.currentTimeMillis();
 
-		/* variáveis do player */
-
+		/* declaração de 'player' */
 		Player player = new Player(GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90);
-		
-//		int player_state = ACTIVE;								// estado
-//		double player_X = GameLib.WIDTH / 2;					// coordenada x
-//		double player_Y = GameLib.HEIGHT * 0.90;				// coordenada y
-//		double player_VX = 0.25;								// velocidade no eixo x
-//		double player_VY = 0.25;								// velocidade no eixo y
-//		double player_radius = 12.0;							// raio (tamanho aproximado do player)
-//		double player_explosion_start = 0;						// instante do início da explosão
-//		double player_explosion_end = 0;						// instante do final da explosão
-//		long player_nextShot = currentTime;						// instante a partir do qual pode haver um próximo tiro
 
 		/* variáveis dos projéteis disparados pelo player */
 		

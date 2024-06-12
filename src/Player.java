@@ -1,13 +1,13 @@
 public class Player {
 
     private final Ponto2D ponto2D;
-    private int state = 1;
-    private double VX = 0.25;
-    private double VY = 0.25;
-    private double radius = 12.0;
-    private double explosion_start = 0;
-    private double explosion_end = 0;
-    private long nextShot = System.currentTimeMillis();
+    private int state = 1; // estado
+    private double VX = 0.25;                           // velocidade no eixo x
+    private double VY = 0.25;                           // velocidade no eixo y
+    private double radius = 12.0;                       // raio (tamanho aproximado do 'player')
+    private double explosion_start = 0;                 // instante do início da explosão
+    private double explosion_end = 0;                   // instante do final da explosão
+    private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
 
     public Player(double x, double y) {
         this.ponto2D = new Ponto2D(x, y);
