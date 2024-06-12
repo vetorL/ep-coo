@@ -1,7 +1,7 @@
 public class Player {
 
     private final Ponto2D ponto2D;
-    private int state = 1; // estado
+    private State state = State.ACTIVE; // estado
     private double VX = 0.25;                           // velocidade no eixo x
     private double VY = 0.25;                           // velocidade no eixo y
     private double radius = 12.0;                       // raio (tamanho aproximado do 'player')
@@ -21,7 +21,7 @@ public class Player {
         return ponto2D.getY();
     }
 
-    public void setState(int state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -49,7 +49,7 @@ public class Player {
         this.nextShot = nextShot;
     }
 
-    public int getState() {
+    public State getState() {
         return state;
     }
 
