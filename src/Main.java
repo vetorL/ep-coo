@@ -63,7 +63,7 @@ public class Main {
 
 		/* variáveis dos projéteis disparados pelo player */
 
-		PlayerProjectileManager playerProjectile = new PlayerProjectileManager();
+		PlayerProjectileManager playerProjectileManager = new PlayerProjectileManager();
 
 		/* variáveis dos inimigos tipo 1 */
 		
@@ -119,11 +119,11 @@ public class Main {
 		
 		/* inicializações */
 		
-		for(int i = 0; i < playerProjectile.getStates().length; i++) {
+		for(int i = 0; i < playerProjectileManager.getStates().length; i++) {
 
-			State [] projectile_states = playerProjectile.getStates();
+			State [] projectile_states = playerProjectileManager.getStates();
 			projectile_states[i] = State.INACTIVE;
-			playerProjectile.setStates(projectile_states);
+			playerProjectileManager.setStates(projectile_states);
 
 		};
 		for(int i = 0; i < e_projectile_states.length; i++) e_projectile_states[i] = State.INACTIVE;
@@ -232,14 +232,14 @@ public class Main {
 			
 			/* colisões projeteis (player) - inimigos */
 			
-			for(int k = 0; k < playerProjectile.getStates().length; k++){
+			for(int k = 0; k < playerProjectileManager.getStates().length; k++){
 				
 				for(int i = 0; i < enemy1_states.length; i++){
 										
 					if(enemy1_states[i] == State.ACTIVE){
 					
-						double dx = enemy1_X[i] - playerProjectile.getX()[k];
-						double dy = enemy1_Y[i] - playerProjectile.getY()[k];
+						double dx = enemy1_X[i] - playerProjectileManager.getX()[k];
+						double dy = enemy1_Y[i] - playerProjectileManager.getY()[k];
 						double dist = Math.sqrt(dx * dx + dy * dy);
 						
 						if(dist < enemy1_radius){
@@ -255,8 +255,8 @@ public class Main {
 					
 					if(enemy2_states[i] == State.ACTIVE){
 						
-						double dx = enemy2_X[i] - playerProjectile.getX()[k];
-						double dy = enemy2_Y[i] - playerProjectile.getY()[k];
+						double dx = enemy2_X[i] - playerProjectileManager.getX()[k];
+						double dy = enemy2_Y[i] - playerProjectileManager.getY()[k];
 						double dist = Math.sqrt(dx * dx + dy * dy);
 						
 						if(dist < enemy2_radius){
@@ -275,27 +275,27 @@ public class Main {
 			
 			/* projeteis (player) */
 			
-			for(int i = 0; i < playerProjectile.getStates().length; i++){
+			for(int i = 0; i < playerProjectileManager.getStates().length; i++){
 				
-				if(playerProjectile.getStates()[i] == State.ACTIVE){
+				if(playerProjectileManager.getStates()[i] == State.ACTIVE){
 					
 					/* verificando se projétil saiu da tela */
-					if(playerProjectile.getY()[i] < 0) {
+					if(playerProjectileManager.getY()[i] < 0) {
 
-						State [] projectile_states = playerProjectile.getStates();
+						State [] projectile_states = playerProjectileManager.getStates();
 						projectile_states[i] = State.INACTIVE;
-						playerProjectile.setStates(projectile_states);
+						playerProjectileManager.setStates(projectile_states);
 
 					}
 					else {
 
-						double [] projectile_X = playerProjectile.getX();
-						projectile_X[i] += playerProjectile.getVX()[i] * delta;
-						playerProjectile.setX(projectile_X);
+						double [] projectile_X = playerProjectileManager.getX();
+						projectile_X[i] += playerProjectileManager.getVX()[i] * delta;
+						playerProjectileManager.setX(projectile_X);
 
-						double [] projectile_Y = playerProjectile.getY();
-						projectile_Y[i] += playerProjectile.getVY()[i] * delta;
-						playerProjectile.setY(projectile_Y);
+						double [] projectile_Y = playerProjectileManager.getY();
+						projectile_Y[i] += playerProjectileManager.getVY()[i] * delta;
+						playerProjectileManager.setY(projectile_Y);
 
 					}
 				}
@@ -522,29 +522,29 @@ public class Main {
 					
 					if(currentTime > player.getNextShot()){
 						
-						int free = findFreeIndex(playerProjectile.getStates());
+						int free = findFreeIndex(playerProjectileManager.getStates());
 												
-						if(free < playerProjectile.getStates().length){
+						if(free < playerProjectileManager.getStates().length){
 
-							double [] projectile_X = playerProjectile.getX();
+							double [] projectile_X = playerProjectileManager.getX();
 							projectile_X[free] = player.getX();
-							playerProjectile.setX(projectile_X);
+							playerProjectileManager.setX(projectile_X);
 
-							double [] projectile_Y = playerProjectile.getY();
+							double [] projectile_Y = playerProjectileManager.getY();
 							projectile_Y[free] = player.getY() - 2 * player.getRadius();
-							playerProjectile.setY(projectile_Y);
+							playerProjectileManager.setY(projectile_Y);
 
-							double [] projectile_VX = playerProjectile.getVX();
+							double [] projectile_VX = playerProjectileManager.getVX();
 							projectile_VX[free] = 0.0;
-							playerProjectile.setVX(projectile_VX);
+							playerProjectileManager.setVX(projectile_VX);
 
-							double [] projectile_VY = playerProjectile.getVY();
+							double [] projectile_VY = playerProjectileManager.getVY();
 							projectile_VY[free] = -1.0;
-							playerProjectile.setVY(projectile_VY);
+							playerProjectileManager.setVY(projectile_VY);
 
-							State [] projectile_states = playerProjectile.getStates();
+							State [] projectile_states = playerProjectileManager.getStates();
 							projectile_states[free] = State.ACTIVE;
-							playerProjectile.setStates(projectile_states);
+							playerProjectileManager.setStates(projectile_states);
 
 							player.setNextShot(currentTime + 100);
 						}
@@ -602,17 +602,17 @@ public class Main {
 			
 			/* deenhando projeteis (player) */
 			
-			for(int i = 0; i < playerProjectile.getStates().length; i++){
+			for(int i = 0; i < playerProjectileManager.getStates().length; i++){
 				
-				if(playerProjectile.getStates()[i] == State.ACTIVE){
+				if(playerProjectileManager.getStates()[i] == State.ACTIVE){
 					
 					GameLib.setColor(Color.GREEN);
-					GameLib.drawLine(playerProjectile.getX()[i], playerProjectile.getY()[i] - 5,
-							playerProjectile.getX()[i], playerProjectile.getY()[i] + 5);
-					GameLib.drawLine(playerProjectile.getX()[i] - 1, playerProjectile.getY()[i] - 3,
-							playerProjectile.getX()[i] - 1, playerProjectile.getY()[i] + 3);
-					GameLib.drawLine(playerProjectile.getX()[i] + 1, playerProjectile.getY()[i] - 3,
-							playerProjectile.getX()[i] + 1, playerProjectile.getY()[i] + 3);
+					GameLib.drawLine(playerProjectileManager.getX()[i], playerProjectileManager.getY()[i] - 5,
+							playerProjectileManager.getX()[i], playerProjectileManager.getY()[i] + 5);
+					GameLib.drawLine(playerProjectileManager.getX()[i] - 1, playerProjectileManager.getY()[i] - 3,
+							playerProjectileManager.getX()[i] - 1, playerProjectileManager.getY()[i] + 3);
+					GameLib.drawLine(playerProjectileManager.getX()[i] + 1, playerProjectileManager.getY()[i] - 3,
+							playerProjectileManager.getX()[i] + 1, playerProjectileManager.getY()[i] + 3);
 				}
 			}
 			
