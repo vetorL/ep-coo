@@ -108,11 +108,8 @@ public class Main {
 		Background firstBackground = new Background(20, 0.070, 0.0);
 		
 		/* estrelas que formam o fundo de segundo plano */
-		
-		double [] background2_X = new double[50];
-		double [] background2_Y = new double[50];
-		double background2_speed = 0.045;
-		double background2_count = 0.0;
+
+		Background secondBackground = new Background(50, 0.045, 0.0);
 		
 		/* inicializações */
 		
@@ -138,10 +135,15 @@ public class Main {
 			firstBackground.setY(y);
 		}
 		
-		for(int i = 0; i < background2_X.length; i++){
-			
-			background2_X[i] = Math.random() * GameLib.WIDTH;
-			background2_Y[i] = Math.random() * GameLib.HEIGHT;
+		for(int i = 0; i < secondBackground.getX().length; i++){
+
+			double [] x = secondBackground.getX();
+			x[i] = Math.random() * GameLib.WIDTH;
+			secondBackground.setX(x);
+
+			double [] y = secondBackground.getY();
+			y[i] = Math.random() * GameLib.HEIGHT;
+			secondBackground.setY(y);
 		}
 						
 		/* iniciado interface gráfica */
@@ -571,11 +573,11 @@ public class Main {
 			/* desenhando plano fundo distante */
 			
 			GameLib.setColor(Color.DARK_GRAY);
-			background2_count += background2_speed * delta;
-			
-			for(int i = 0; i < background2_X.length; i++){
+			secondBackground.setCount(secondBackground.getCount() + secondBackground.getSpeed() * delta);
+
+			for(int i = 0; i < secondBackground.getX().length; i++){
 				
-				GameLib.fillRect(background2_X[i], (background2_Y[i] + background2_count) % GameLib.HEIGHT, 2, 2);
+				GameLib.fillRect(secondBackground.getX()[i], (secondBackground.getY()[i] + secondBackground.getCount()) % GameLib.HEIGHT, 2, 2);
 			}
 			
 			/* desenhando plano de fundo próximo */
