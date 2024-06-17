@@ -104,11 +104,8 @@ public class Main {
 		double e_projectile_radius = 2.0;						// raio (tamanho dos projéteis inimigos)
 		
 		/* estrelas que formam o fundo de primeiro plano */
-		
-		double [] background1_X = new double[20];
-		double [] background1_Y = new double[20];
-		double background1_speed = 0.070;
-		double background1_count = 0.0;
+
+		Background firstBackground = new Background(20, 0.070, 0.0);
 		
 		/* estrelas que formam o fundo de segundo plano */
 		
@@ -129,11 +126,16 @@ public class Main {
 		for(int i = 0; i < e_projectile_states.length; i++) e_projectile_states[i] = State.INACTIVE;
 		for(int i = 0; i < enemy1_states.length; i++) enemy1_states[i] = State.INACTIVE;
 		for(int i = 0; i < enemy2_states.length; i++) enemy2_states[i] = State.INACTIVE;
-		
-		for(int i = 0; i < background1_X.length; i++){
-			
-			background1_X[i] = Math.random() * GameLib.WIDTH;
-			background1_Y[i] = Math.random() * GameLib.HEIGHT;
+
+		for(int i = 0; i < firstBackground.getX().length; i++){
+
+			double [] x = firstBackground.getX();
+			x[i] = Math.random() * GameLib.WIDTH;
+			firstBackground.setX(x);
+
+			double [] y = firstBackground.getY();
+			y[i] = Math.random() * GameLib.HEIGHT;
+			firstBackground.setY(y);
 		}
 		
 		for(int i = 0; i < background2_X.length; i++){
@@ -579,11 +581,11 @@ public class Main {
 			/* desenhando plano de fundo próximo */
 			
 			GameLib.setColor(Color.GRAY);
-			background1_count += background1_speed * delta;
+			firstBackground.setCount(firstBackground.getCount() + firstBackground.getSpeed() * delta);
 			
-			for(int i = 0; i < background1_X.length; i++){
+			for(int i = 0; i < firstBackground.getX().length; i++){
 				
-				GameLib.fillRect(background1_X[i], (background1_Y[i] + background1_count) % GameLib.HEIGHT, 3, 3);
+				GameLib.fillRect(firstBackground.getX()[i], (firstBackground.getY()[i] + firstBackground.getCount()) % GameLib.HEIGHT, 3, 3);
 			}
 						
 			/* desenhando player */
