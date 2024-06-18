@@ -25,4 +25,32 @@ public class PlayerProjectileManager extends ProjectileManager {
         }
     }
 
+    public void updatePosition(long delta) {
+        for(int i = 0; i < getStates().length; i++){
+
+            if(getStates()[i] == State.ACTIVE){
+
+                /* verificando se projétil saiu da tela */
+                if(getY()[i] < 0) {
+
+                    State [] projectile_states = getStates();
+                    projectile_states[i] = State.INACTIVE;
+                    setStates(projectile_states);
+
+                }
+                else {
+
+                    double [] projectile_X = getX();
+                    projectile_X[i] += getVX()[i] * delta;
+                    setX(projectile_X);
+
+                    double [] projectile_Y = getY();
+                    projectile_Y[i] += getVY()[i] * delta;
+                    setY(projectile_Y);
+
+                }
+            }
+        }
+    }
+
 }

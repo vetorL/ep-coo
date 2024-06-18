@@ -279,31 +279,7 @@ public class Main {
 			
 			/* projeteis (player) */
 			
-			for(int i = 0; i < playerProjectileManager.getStates().length; i++){
-				
-				if(playerProjectileManager.getStates()[i] == State.ACTIVE){
-					
-					/* verificando se projétil saiu da tela */
-					if(playerProjectileManager.getY()[i] < 0) {
-
-						State [] projectile_states = playerProjectileManager.getStates();
-						projectile_states[i] = State.INACTIVE;
-						playerProjectileManager.setStates(projectile_states);
-
-					}
-					else {
-
-						double [] projectile_X = playerProjectileManager.getX();
-						projectile_X[i] += playerProjectileManager.getVX()[i] * delta;
-						playerProjectileManager.setX(projectile_X);
-
-						double [] projectile_Y = playerProjectileManager.getY();
-						projectile_Y[i] += playerProjectileManager.getVY()[i] * delta;
-						playerProjectileManager.setY(projectile_Y);
-
-					}
-				}
-			}
+			playerProjectileManager.updatePosition(delta);
 			
 			/* projeteis (inimigos) */
 			
