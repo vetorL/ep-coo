@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Player {
 
     private final Ponto2D ponto2D;
@@ -11,6 +13,19 @@ public class Player {
 
     public Player(double x, double y) {
         this.ponto2D = new Ponto2D(x, y);
+    }
+
+    public void draw(long currentTime) {
+        if(getState() == State.EXPLODING){
+
+            double alpha = (currentTime - getExplosion_start()) / (getExplosion_end() - getExplosion_start());
+            GameLib.drawExplosion(getX(), getY(), alpha);
+        }
+        else{
+
+            GameLib.setColor(Color.BLUE);
+            GameLib.drawPlayer(getX(), getY(), getRadius());
+        }
     }
 
     public double getX() {

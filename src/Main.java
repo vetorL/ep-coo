@@ -592,16 +592,7 @@ public class Main {
 						
 			/* desenhando player */
 			
-			if(player.getState() == State.EXPLODING){
-				
-				double alpha = (currentTime - player.getExplosion_start()) / (player.getExplosion_end() - player.getExplosion_start());
-				GameLib.drawExplosion(player.getX(), player.getY(), alpha);
-			}
-			else{
-				
-				GameLib.setColor(Color.BLUE);
-				GameLib.drawPlayer(player.getX(), player.getY(), player.getRadius());
-			}
+			player.draw(currentTime);
 				
 			
 			/* deenhando projeteis (player) */
