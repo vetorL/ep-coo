@@ -1,4 +1,4 @@
-public class ProjectileManager {
+public abstract class ProjectileManager {
 
     private State [] states;                // estados
     private double [] X;				    // coordenadas x
