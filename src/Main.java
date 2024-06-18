@@ -481,7 +481,7 @@ public class Main {
 			if(player.getState() == State.ACTIVE){
 				
 				if(GameLib.iskeyPressed(GameLib.KEY_UP)) {
-					player.setY(player.getY() - delta * player.getVY());
+					player.moveUp(delta);
 				}
 				if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) {
 					player.setY(player.getY() + delta * player.getVY());

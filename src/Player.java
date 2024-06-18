@@ -66,6 +66,10 @@ public class Player {
         }
     }
 
+    public void moveUp(long delta) {
+        setY(getY() - delta * getVY());
+    }
+
     public double getX() {
         return ponto2D.getX();
     }
