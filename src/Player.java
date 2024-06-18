@@ -108,6 +108,13 @@ public class Player {
         this.state = state;
     }
 
+    public void isWithinBounds() {
+        if(getX() < 0.0) setX(0.0);
+        if(getX() >= GameLib.WIDTH) setX(GameLib.WIDTH - 1);
+        if(getY() < 25.0) setY(25.0);
+        if(getY() >= GameLib.HEIGHT) setY(GameLib.HEIGHT - 1);
+    }
+
     public void setVX(double VX) {
         this.VX = VX;
     }
