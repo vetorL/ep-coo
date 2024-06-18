@@ -9,6 +9,16 @@ public class PlayerProjectileManager extends ProjectileManager {
         super.setVY(new double[10]);
     }
 
+    public void init() {
+        for(int i = 0; i < getStates().length; i++) {
+
+            State [] projectile_states = getStates();
+            projectile_states[i] = State.INACTIVE;
+            setStates(projectile_states);
+
+        };
+    }
+
     public void drawProjectiles() {
         for(int i = 0; i < getStates().length; i++){
 

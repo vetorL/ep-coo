@@ -113,13 +113,7 @@ public class Main {
 		
 		/* inicializações */
 		
-		for(int i = 0; i < playerProjectileManager.getStates().length; i++) {
-
-			State [] projectile_states = playerProjectileManager.getStates();
-			projectile_states[i] = State.INACTIVE;
-			playerProjectileManager.setStates(projectile_states);
-
-		};
+		playerProjectileManager.init();
 		for(int i = 0; i < e_projectile_states.length; i++) e_projectile_states[i] = State.INACTIVE;
 		for(int i = 0; i < enemy1_states.length; i++) enemy1_states[i] = State.INACTIVE;
 		for(int i = 0; i < enemy2_states.length; i++) enemy2_states[i] = State.INACTIVE;
