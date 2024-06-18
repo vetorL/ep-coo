@@ -493,36 +493,7 @@ public class Main {
 					player.setX(player.getX() + delta * player.getVY());
 				}
 				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-					
-					if(currentTime > player.getNextShot()){
-						
-						int free = findFreeIndex(playerProjectileManager.getStates());
-												
-						if(free < playerProjectileManager.getStates().length){
-
-							double [] projectile_X = playerProjectileManager.getX();
-							projectile_X[free] = player.getX();
-							playerProjectileManager.setX(projectile_X);
-
-							double [] projectile_Y = playerProjectileManager.getY();
-							projectile_Y[free] = player.getY() - 2 * player.getRadius();
-							playerProjectileManager.setY(projectile_Y);
-
-							double [] projectile_VX = playerProjectileManager.getVX();
-							projectile_VX[free] = 0.0;
-							playerProjectileManager.setVX(projectile_VX);
-
-							double [] projectile_VY = playerProjectileManager.getVY();
-							projectile_VY[free] = -1.0;
-							playerProjectileManager.setVY(projectile_VY);
-
-							State [] projectile_states = playerProjectileManager.getStates();
-							projectile_states[free] = State.ACTIVE;
-							playerProjectileManager.setStates(projectile_states);
-
-							player.setNextShot(currentTime + 100);
-						}
-					}	
+					player.fire(currentTime, playerProjectileManager);
 				}
 			}
 			
