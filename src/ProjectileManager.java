@@ -6,6 +6,8 @@ public abstract class ProjectileManager {
     private double [] VX;				    // velocidades no eixo x
     private double [] VY;				    // velocidades no eixo y
 
+    public abstract void init();
+
     public State[] getStates() {
         return states;
     }
