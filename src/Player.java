@@ -28,6 +28,12 @@ public class Player {
         }
     }
 
+    public void explode(long currentTime) {
+        setState(State.EXPLODING);
+        setExplosion_start(currentTime);
+        setExplosion_end(currentTime + 2000);
+    }
+
     public double getX() {
         return ponto2D.getX();
     }

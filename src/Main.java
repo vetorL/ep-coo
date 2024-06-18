@@ -212,10 +212,7 @@ public class Main {
 					double dist = Math.sqrt(dx * dx + dy * dy);
 					
 					if(dist < (player.getRadius() + enemy1_radius) * 0.8){
-
-						player.setState(State.EXPLODING);
-						player.setExplosion_start(currentTime);
-						player.setExplosion_end(currentTime + 2000);
+						player.explode(currentTime);
 					}
 				}
 				
@@ -226,10 +223,7 @@ public class Main {
 					double dist = Math.sqrt(dx * dx + dy * dy);
 					
 					if(dist < (player.getRadius() + enemy2_radius) * 0.8){
-
-						player.setState(State.EXPLODING);
-						player.setExplosion_start(currentTime);
-						player.setExplosion_end(currentTime + 2000);
+						player.explode(currentTime);
 					}
 				}
 			}
