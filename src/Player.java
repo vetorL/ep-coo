@@ -82,6 +82,20 @@ public class Player {
         setX(getX() + delta * getVY());
     }
 
+    public void checkCollisionWithEnemyProjectile(long currentTime,
+                                                  EnemyProjectileManager enemyProjectileManager) {
+        for(int i = 0; i < enemyProjectileManager.getStates().length; i++){
+
+            double dx = enemyProjectileManager.getX()[i] - getX();
+            double dy = enemyProjectileManager.getY()[i] - getY();
+            double dist = Math.sqrt(dx * dx + dy * dy);
+
+            if(dist < (getRadius() + enemyProjectileManager.getRadius()) * 0.8){
+                explode(currentTime);
+            }
+        }
+    }
+
     public double getX() {
         return ponto2D.getX();
     }

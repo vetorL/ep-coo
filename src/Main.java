@@ -160,16 +160,7 @@ public class Main {
 				
 				/* colisões player - projeteis (inimigo) */
 				
-				for(int i = 0; i < enemyProjectileManager.getStates().length; i++){
-					
-					double dx = enemyProjectileManager.getX()[i] - player.getX();
-					double dy = enemyProjectileManager.getY()[i] - player.getY();
-					double dist = Math.sqrt(dx * dx + dy * dy);
-					
-					if(dist < (player.getRadius() + enemyProjectileManager.getRadius()) * 0.8){
-						player.explode(currentTime);
-					}
-				}
+				player.checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
 			
 				/* colisões player - inimigos */
 							
