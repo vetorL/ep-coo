@@ -118,27 +118,9 @@ public class Main {
 		for(int i = 0; i < enemy1_states.length; i++) enemy1_states[i] = State.INACTIVE;
 		for(int i = 0; i < enemy2_states.length; i++) enemy2_states[i] = State.INACTIVE;
 
-		for(int i = 0; i < firstBackground.getX().length; i++){
-
-			double [] x = firstBackground.getX();
-			x[i] = Math.random() * GameLib.WIDTH;
-			firstBackground.setX(x);
-
-			double [] y = firstBackground.getY();
-			y[i] = Math.random() * GameLib.HEIGHT;
-			firstBackground.setY(y);
-		}
+		firstBackground.init();
 		
-		for(int i = 0; i < secondBackground.getX().length; i++){
-
-			double [] x = secondBackground.getX();
-			x[i] = Math.random() * GameLib.WIDTH;
-			secondBackground.setX(x);
-
-			double [] y = secondBackground.getY();
-			y[i] = Math.random() * GameLib.HEIGHT;
-			secondBackground.setY(y);
-		}
+		secondBackground.init();
 						
 		/* iniciado interface gráfica */
 		
