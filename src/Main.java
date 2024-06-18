@@ -605,20 +605,8 @@ public class Main {
 				
 			
 			/* deenhando projeteis (player) */
-			
-			for(int i = 0; i < playerProjectileManager.getStates().length; i++){
-				
-				if(playerProjectileManager.getStates()[i] == State.ACTIVE){
-					
-					GameLib.setColor(Color.GREEN);
-					GameLib.drawLine(playerProjectileManager.getX()[i], playerProjectileManager.getY()[i] - 5,
-							playerProjectileManager.getX()[i], playerProjectileManager.getY()[i] + 5);
-					GameLib.drawLine(playerProjectileManager.getX()[i] - 1, playerProjectileManager.getY()[i] - 3,
-							playerProjectileManager.getX()[i] - 1, playerProjectileManager.getY()[i] + 3);
-					GameLib.drawLine(playerProjectileManager.getX()[i] + 1, playerProjectileManager.getY()[i] - 3,
-							playerProjectileManager.getX()[i] + 1, playerProjectileManager.getY()[i] + 3);
-				}
-			}
+
+			playerProjectileManager.drawProjectiles();
 			
 			/* desenhando projeteis (inimigos) */
 		
