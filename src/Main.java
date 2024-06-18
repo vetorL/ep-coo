@@ -487,7 +487,7 @@ public class Main {
 					player.moveDown(delta);
 				}
 				if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) {
-					player.setX(player.getX() - delta * player.getVX());
+					player.moveLeft(delta);
 				}
 				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) {
 					player.setX(player.getX() + delta * player.getVY());
