@@ -490,7 +490,7 @@ public class Main {
 					player.moveLeft(delta);
 				}
 				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) {
-					player.setX(player.getX() + delta * player.getVY());
+					player.moveRight(delta);
 				}
 				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
 					player.fire(currentTime, playerProjectileManager);

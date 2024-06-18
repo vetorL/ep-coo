@@ -78,6 +78,10 @@ public class Player {
         setX(getX() - delta * getVX());
     }
 
+    public void moveRight(long delta) {
+        setX(getX() + delta * getVY());
+    }
+
     public double getX() {
         return ponto2D.getX();
     }
