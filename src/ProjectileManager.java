@@ -8,6 +8,10 @@ public abstract class ProjectileManager {
 
     public abstract void init();
 
+    public abstract void updatePosition(long delta);
+
+    public abstract void drawProjectiles();
+
     public State[] getStates() {
         return states;
     }
