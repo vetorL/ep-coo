@@ -12,6 +12,15 @@ public class Background {
         this.count = count;
     }
 
+    public void draw(long delta, int x) {
+        setCount(getCount() + getSpeed() * delta);
+
+        for(int i = 0; i < getX().length; i++){
+
+            GameLib.fillRect(getX()[i], (getY()[i] + getCount()) % GameLib.HEIGHT, x, x);
+        }
+    }
+
     public double[] getX() {
         return X;
     }

@@ -511,22 +511,12 @@ public class Main {
 			/* desenhando plano fundo distante */
 			
 			GameLib.setColor(Color.DARK_GRAY);
-			secondBackground.setCount(secondBackground.getCount() + secondBackground.getSpeed() * delta);
-
-			for(int i = 0; i < secondBackground.getX().length; i++){
-				
-				GameLib.fillRect(secondBackground.getX()[i], (secondBackground.getY()[i] + secondBackground.getCount()) % GameLib.HEIGHT, 2, 2);
-			}
+			secondBackground.draw(delta, 2);
 			
 			/* desenhando plano de fundo próximo */
 			
 			GameLib.setColor(Color.GRAY);
-			firstBackground.setCount(firstBackground.getCount() + firstBackground.getSpeed() * delta);
-			
-			for(int i = 0; i < firstBackground.getX().length; i++){
-				
-				GameLib.fillRect(firstBackground.getX()[i], (firstBackground.getY()[i] + firstBackground.getCount()) % GameLib.HEIGHT, 3, 3);
-			}
+			firstBackground.draw(delta, 3);
 						
 			/* desenhando player */
 			
