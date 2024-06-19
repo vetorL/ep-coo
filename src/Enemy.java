@@ -35,6 +35,25 @@ public abstract class Enemy {
         }
     }
 
+    public void checkCollisionWithPlayerProjectile(long currentTime,
+                                                   PlayerProjectileManager playerProjectileManager,
+                                                   int k) {
+        for(int i = 0; i < getStates().length; i++){
+
+            if(getStates()[i] == State.ACTIVE){
+
+                double dx = getX()[i] - playerProjectileManager.getX()[k];
+                double dy = getY()[i] - playerProjectileManager.getY()[k];
+                double dist = Math.sqrt(dx * dx + dy * dy);
+
+                if(dist < getRadius()){
+
+                    explode(currentTime, i);
+                }
+            }
+        }
+    }
+
     public void explode(long currentTime, int i) {
         State [] enemy_states = getStates();
         enemy_states[i] = State.EXPLODING;

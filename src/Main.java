@@ -149,36 +149,9 @@ public class Main {
 			/* colisões projeteis (player) - inimigos */
 			
 			for(int k = 0; k < playerProjectileManager.getStates().length; k++){
+				enemy1.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
 				
-				for(int i = 0; i < enemy1.getStates().length; i++){
-										
-					if(enemy1.getStates()[i] == State.ACTIVE){
-					
-						double dx = enemy1.getX()[i] - playerProjectileManager.getX()[k];
-						double dy = enemy1.getY()[i] - playerProjectileManager.getY()[k];
-						double dist = Math.sqrt(dx * dx + dy * dy);
-						
-						if(dist < enemy1.getRadius()){
-							
-							enemy1.explode(currentTime, i);
-						}
-					}
-				}
-				
-				for(int i = 0; i < enemy2.getStates().length; i++){
-					
-					if(enemy2.getStates()[i] == State.ACTIVE){
-						
-						double dx = enemy2.getX()[i] - playerProjectileManager.getX()[k];
-						double dy = enemy2.getY()[i] - playerProjectileManager.getY()[k];
-						double dist = Math.sqrt(dx * dx + dy * dy);
-						
-						if(dist < enemy2.getRadius()){
-							
-							enemy2.explode(currentTime, i);
-						}
-					}
-				}
+				enemy2.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
 			}
 				
 			/***************************/
