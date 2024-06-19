@@ -2,15 +2,6 @@ import java.awt.*;
 
 public abstract class EnemyManager {
 
-//    private State [] states = new State[10];					// estados
-//    private double [] X = new double[10];					// coordenadas x
-//    private double [] Y = new double[10];					// coordenadas y
-//    private double [] V = new double[10];					// velocidades
-//    private double [] angle = new double[10];				// ângulos (indicam direção do movimento)
-//    private double [] RV = new double[10];					// velocidades de rotação
-//    private double [] explosion_start = new double[10];		// instantes dos inícios das explosões
-//    private double [] explosion_end = new double[10];		// instantes do próximo tiro
-//    private double radius;					// raio (tamanho do inimigo)
     private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
     private Enemy [] enemies = new Enemy[10];
@@ -34,15 +25,8 @@ public abstract class EnemyManager {
 //    };
 
     public void checkCollisionWithPlayer(long currentTime, Player player) {
-        for(int i = 0; i < getStates().length; i++){
-
-            double dx = getX()[i] - player.getX();
-            double dy = getY()[i] - player.getY();
-            double dist = Math.sqrt(dx * dx + dy * dy);
-
-            if(dist < (player.getRadius() + getRadius()) * 0.8){
-                player.explode(currentTime);
-            }
+        for(Enemy enemy : enemies) {
+            enemy.checkCollisionWithPlayer(currentTime, player);
         }
     }
 
