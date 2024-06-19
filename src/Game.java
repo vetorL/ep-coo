@@ -14,6 +14,7 @@ public class Game {
     private boolean running = true;
     private CollisionManager collisionManager;
     private StateManager stateManager;
+    private InputManager inputManager;
 
     public Game(Player player, PlayerProjectileManager playerProjectileManager,
                 Enemy1 enemy1, Enemy2 enemy2, EnemyProjectileManager enemyProjectileManager,
@@ -28,6 +29,7 @@ public class Game {
         this.currentTime = currentTime;
         this.collisionManager = new CollisionManager();
         this.stateManager = new StateManager();
+        this.inputManager = new InputManager();
     }
 
     public boolean isRunning() {
@@ -63,31 +65,7 @@ public class Game {
         /* Verificando entrada do usuário (teclado) */
         /********************************************/
 
-        if(player.getState() == State.ACTIVE){
-
-            if(GameLib.iskeyPressed(GameLib.KEY_UP)) {
-                player.moveUp(delta);
-            }
-            if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) {
-                player.moveDown(delta);
-            }
-            if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) {
-                player.moveLeft(delta);
-            }
-            if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) {
-                player.moveRight(delta);
-            }
-            if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-                player.fire(currentTime, playerProjectileManager);
-            }
-        }
-
-        if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
-
-        /* Verificando se coordenadas do player ainda estão dentro	*/
-        /* da tela de jogo após processar entrada do usuário.       */
-
-        player.isWithinBounds();
+        this.running = inputManager.verifyInput(player, currentTime, delta, playerProjectileManager);
 
         /*******************/
         /* Desenho da cena */
