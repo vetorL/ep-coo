@@ -12,6 +12,7 @@ public class Game {
     private long currentTime;
     private long delta;
     private boolean running = true;
+    private CollisionManager collisionManager;
 
     public Game(Player player, PlayerProjectileManager playerProjectileManager,
                 Enemy1 enemy1, Enemy2 enemy2, EnemyProjectileManager enemyProjectileManager,
@@ -24,6 +25,7 @@ public class Game {
         this.firstBackground = firstBackground;
         this.secondBackground = secondBackground;
         this.currentTime = currentTime;
+        this.collisionManager = new CollisionManager();
     }
 
     public boolean isRunning() {
@@ -45,26 +47,8 @@ public class Game {
         /* Verificação de colisões */
         /***************************/
 
-        if(player.getState() == State.ACTIVE){
-
-            /* colisões player - projeteis (inimigo) */
-
-            player.checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
-
-            /* colisões player - inimigos */
-
-            enemy1.checkCollisionWithPlayer(currentTime, player);
-
-            enemy2.checkCollisionWithPlayer(currentTime, player);
-        }
-
-        /* colisões projeteis (player) - inimigos */
-
-        for(int k = 0; k < playerProjectileManager.getStates().length; k++){
-            enemy1.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
-
-            enemy2.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
-        }
+        collisionManager.verifyCollisions(currentTime, player,
+                playerProjectileManager, enemy1, enemy2, enemyProjectileManager);
 
         /***************************/
         /* Atualizações de estados */
