@@ -2,7 +2,7 @@ public class StateManager {
 
     public void updateStates(long currentTime, Player player,
                              PlayerProjectileManager playerProjectileManager,
-                             Enemy1 enemy1, Enemy2 enemy2,
+                             EnemyManager1 enemy1, EnemyManager2 enemy2,
                              EnemyProjectileManager enemyProjectileManager,
                              long delta) {
         /* projeteis (player) */

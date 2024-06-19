@@ -1,4 +1,4 @@
-public abstract class Enemy {
+public abstract class EnemyManager {
 
     private State [] states = new State[10];					// estados
     private double [] X = new double[10];					// coordenadas x
@@ -11,7 +11,7 @@ public abstract class Enemy {
     private double radius;					// raio (tamanho do inimigo)
     private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
-    public Enemy(long nextEnemy, double radius) {
+    public EnemyManager(long nextEnemy, double radius) {
         this.nextEnemy = nextEnemy;
         this.radius = radius;
     }

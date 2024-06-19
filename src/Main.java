@@ -1,5 +1,3 @@
-import java.awt.Color;
-
 public class Main {
 
 	/* Espera, sem fazer nada, até que o instante de tempo atual seja */
@@ -67,11 +65,11 @@ public class Main {
 
 		/* variáveis dos inimigos tipo 1 */
 
-		Enemy1 enemy1 = new Enemy1(currentTime + 2000);
+		EnemyManager1 enemy1 = new EnemyManager1(currentTime + 2000);
 		
 		/* variáveis dos inimigos tipo 2 */
 
-		Enemy2 enemy2 = new Enemy2(currentTime + 7000);
+		EnemyManager2 enemy2 = new EnemyManager2(currentTime + 7000);
 
 		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2) */
 

@@ -1,11 +1,9 @@
-import java.awt.*;
-
 public class Game {
 
     private Player player;
     private PlayerProjectileManager playerProjectileManager;
-    private Enemy1 enemy1;
-    private Enemy2 enemy2;
+    private EnemyManager1 enemy1;
+    private EnemyManager2 enemy2;
     private EnemyProjectileManager enemyProjectileManager;
     private Background firstBackground;
     private Background secondBackground;
@@ -18,7 +16,7 @@ public class Game {
     private BackgroundManager backgroundManager;
 
     public Game(Player player, PlayerProjectileManager playerProjectileManager,
-                Enemy1 enemy1, Enemy2 enemy2, EnemyProjectileManager enemyProjectileManager,
+                EnemyManager1 enemy1, EnemyManager2 enemy2, EnemyProjectileManager enemyProjectileManager,
                 Background firstBackground, Background secondBackground, long currentTime) {
         this.player = player;
         this.playerProjectileManager = playerProjectileManager;

@@ -1,10 +1,10 @@
 import java.awt.*;
 
-public class Enemy1 extends Enemy{
+public class EnemyManager1 extends EnemyManager {
 
     private long [] enemy1_nextShoot = new long[10];
 
-    public Enemy1(long nextEnemy) {
+    public EnemyManager1(long nextEnemy) {
         super(nextEnemy, 9.0);
     }
 

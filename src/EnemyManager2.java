@@ -1,12 +1,12 @@
 import java.awt.*;
 
-public class Enemy2 extends Enemy{
+public class EnemyManager2 extends EnemyManager {
 
 
     private double spawnX = GameLib.WIDTH * 0.20;			// coordenada x do próximo inimigo tipo 2 a aparecer
     private int count = 0;									// contagem de inimigos tipo 2 (usada na "formação de voo")
 
-    public Enemy2(long nextEnemy) {
+    public EnemyManager2(long nextEnemy) {
         super(nextEnemy, 12.0);
     }
 
