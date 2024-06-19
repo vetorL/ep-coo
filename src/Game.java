@@ -15,6 +15,7 @@ public class Game {
     private CollisionManager collisionManager;
     private StateManager stateManager;
     private InputManager inputManager;
+    private BackgroundManager backgroundManager;
 
     public Game(Player player, PlayerProjectileManager playerProjectileManager,
                 Enemy1 enemy1, Enemy2 enemy2, EnemyProjectileManager enemyProjectileManager,
@@ -30,6 +31,7 @@ public class Game {
         this.collisionManager = new CollisionManager();
         this.stateManager = new StateManager();
         this.inputManager = new InputManager();
+        this.backgroundManager = new BackgroundManager();
     }
 
     public boolean isRunning() {
@@ -71,40 +73,8 @@ public class Game {
         /* Desenho da cena */
         /*******************/
 
-        /* desenhando plano fundo distante */
-
-        GameLib.setColor(Color.DARK_GRAY);
-        secondBackground.draw(delta, 2);
-
-        /* desenhando plano de fundo próximo */
-
-        GameLib.setColor(Color.GRAY);
-        firstBackground.draw(delta, 3);
-
-        /* desenhando player */
-
-        player.draw(currentTime);
-
-
-        /* deenhando projeteis (player) */
-
-        playerProjectileManager.drawProjectiles();
-
-        /* desenhando projeteis (inimigos) */
-
-        enemyProjectileManager.drawProjectiles();
-
-        /* desenhando inimigos (tipo 1) */
-
-        enemy1.draw(currentTime);
-
-        /* desenhando inimigos (tipo 2) */
-
-        enemy2.draw(currentTime);
-
-        /* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
-
-        GameLib.display();
+        backgroundManager.drawScene(currentTime, delta, player, playerProjectileManager,
+                enemy1, enemy2, enemyProjectileManager, firstBackground, secondBackground);
 
         /* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */
 
