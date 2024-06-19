@@ -16,6 +16,39 @@ public abstract class Enemy {
         this.radius = radius;
     }
 
+    public abstract void init();
+
+    public abstract void tryLaunch(long currentTime);
+
+    public abstract void draw(long currentTime);
+
+    public void checkCollisionWithPlayer(long currentTime, Player player) {
+        for(int i = 0; i < getStates().length; i++){
+
+            double dx = getX()[i] - player.getX();
+            double dy = getY()[i] - player.getY();
+            double dist = Math.sqrt(dx * dx + dy * dy);
+
+            if(dist < (player.getRadius() + getRadius()) * 0.8){
+                player.explode(currentTime);
+            }
+        }
+    }
+
+    public void explode(long currentTime, int i) {
+        State [] enemy_states = getStates();
+        enemy_states[i] = State.EXPLODING;
+        setStates(enemy_states);
+
+        double [] enemy_explosion_start = getExplosion_start();
+        enemy_explosion_start[i] = currentTime;
+        setExplosion_start(enemy_explosion_start);
+
+        double [] enemy_explosion_end = getExplosion_end();
+        enemy_explosion_end[i] = currentTime + 500;
+        setExplosion_end(enemy_explosion_end);
+    }
+
     public State[] getStates() {
         return states;
     }
