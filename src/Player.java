@@ -2,7 +2,8 @@ import java.awt.*;
 
 public class Player {
 
-    private final Ponto2D ponto2D;
+    private double X;
+    private double Y;
     private State state = State.ACTIVE; // estado
     private double VX = 0.25;                           // velocidade no eixo x
     private double VY = 0.25;                           // velocidade no eixo y
@@ -12,7 +13,8 @@ public class Player {
     private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
 
     public Player(double x, double y) {
-        this.ponto2D = new Ponto2D(x, y);
+        this.X = x;
+        this.Y = y;
     }
 
     public void draw(long currentTime) {
@@ -97,11 +99,11 @@ public class Player {
     }
 
     public double getX() {
-        return ponto2D.getX();
+        return X;
     }
 
     public double getY() {
-        return ponto2D.getY();
+        return Y;
     }
 
     public void setState(State state) {
@@ -168,10 +170,10 @@ public class Player {
     }
 
     public void setX(double x) {
-        ponto2D.setX(x);
+        this.X = x;
     }
 
     public void setY(double y) {
-        ponto2D.setY(y);
+        this.Y = y;
     }
 }
