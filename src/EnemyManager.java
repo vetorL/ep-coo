@@ -1,17 +1,17 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class EnemyManager {
 
     private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
-    private Enemy [] enemies = new Enemy[10];
+    private final ArrayList<Enemy> enemies = new ArrayList<>();
 
-    public EnemyManager(long nextEnemy, double radius) {
-        for (int i = 0; i < enemies.length; i++) {
-            enemies[i] = new Enemy();
+    public EnemyManager(long nextEnemy, double radius, int numberOfEnemies) {
+        for (int i = 0; i < numberOfEnemies; i++) {
+            enemies.add(new Enemy(radius));
         }
         this.nextEnemy = nextEnemy;
-        setRadius(radius);
     }
 
     public abstract void init();
@@ -39,123 +39,123 @@ public abstract class EnemyManager {
     }
 
     public void explode(long currentTime, int i) {
-        enemies[i].explode(currentTime);
+        enemies.get(i).explode(currentTime);
     }
 
     public State[] getStates() {
-        State[] states = new State[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            states[i] = enemies[i].getState();
+        State[] states = new State[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            states[i] = enemies.get(i).getState();
         }
         return states;
     }
 
     public void setStates(State[] states) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setState(states[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setState(states[i]);
         }
     }
 
     public double[] getX() {
-        double[] X = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            X[i] = enemies[i].getX();
+        double[] X = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            X[i] = enemies.get(i).getX();
         }
         return X;
     }
 
     public void setX(double[] x) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setX(x[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setX(x[i]);
         }
     }
 
     public double[] getY() {
-        double [] Y = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            Y[i] = enemies[i].getY();
+        double [] Y = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            Y[i] = enemies.get(i).getY();
         }
         return Y;
     }
 
     public void setY(double[] y) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setY(y[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setY(y[i]);
         }
     }
 
     public double[] getV() {
-        double[] V = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            V[i] = enemies[i].getV();
+        double[] V = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            V[i] = enemies.get(i).getV();
         }
         return V;
     }
 
     public void setV(double[] v) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setV(v[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setV(v[i]);
         }
     }
 
     public double[] getAngle() {
-        double[] angle = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            angle[i] = enemies[i].getAngle();
+        double[] angle = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            angle[i] = enemies.get(i).getAngle();
         }
         return angle;
     }
 
     public void setAngle(double[] angle) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setAngle(angle[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setAngle(angle[i]);
         }
     }
 
     public double[] getRV() {
-        double[] RV = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            RV[i] = enemies[i].getRV();
+        double[] RV = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            RV[i] = enemies.get(i).getRV();
         }
         return RV;
     }
 
     public void setRV(double[] RV) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setRV(RV[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setRV(RV[i]);
         }
     }
 
     public double[] getExplosion_start() {
-        double [] explosion_start = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            explosion_start[i] = enemies[i].getExplosion_start();
+        double [] explosion_start = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            explosion_start[i] = enemies.get(i).getExplosion_start();
         }
         return explosion_start;
     }
 
     public void setExplosion_start(double[] explosion_start) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setExplosion_start(explosion_start[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setExplosion_start(explosion_start[i]);
         }
     }
 
     public double[] getExplosion_end() {
-        double [] explosion_end = new double[enemies.length];
-        for(int i = 0; i < enemies.length; i++) {
-            explosion_end[i] = enemies[i].getExplosion_end();
+        double [] explosion_end = new double[enemies.size()];
+        for(int i = 0; i < enemies.size(); i++) {
+            explosion_end[i] = enemies.get(i).getExplosion_end();
         }
         return explosion_end;
     }
 
     public void setExplosion_end(double[] explosion_end) {
-        for(int i = 0; i < enemies.length; i++) {
-            enemies[i].setExplosion_end(explosion_end[i]);
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setExplosion_end(explosion_end[i]);
         }
     }
 
     public double getRadius() {
-        return enemies[0].getRadius();
+        return enemies.get(0).getRadius();
     }
 
     public void setRadius(double radius) {

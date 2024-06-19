@@ -7,7 +7,7 @@ public class EnemyManager2 extends EnemyManager {
     private int count = 0;									// contagem de inimigos tipo 2 (usada na "formação de voo")
 
     public EnemyManager2(long nextEnemy) {
-        super(nextEnemy, 12.0);
+        super(nextEnemy, 12.0, 10);
     }
 
     public void init() {

@@ -13,7 +13,8 @@ public class Enemy {
     private double radius;					// raio (tamanho do inimigo)
 //    private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
-    public Enemy() {
+    public Enemy(double radius) {
+        setRadius(radius);
     }
 
     public Enemy(State state, double x, double y,

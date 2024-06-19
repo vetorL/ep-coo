@@ -5,7 +5,7 @@ public class EnemyManager1 extends EnemyManager {
     private long [] enemy1_nextShoot = new long[10];
 
     public EnemyManager1(long nextEnemy) {
-        super(nextEnemy, 9.0);
+        super(nextEnemy, 9.0, 10);
     }
 
     public void init() {
