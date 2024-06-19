@@ -33,19 +33,8 @@ public abstract class EnemyManager {
     public void checkCollisionWithPlayerProjectile(long currentTime,
                                                    PlayerProjectileManager playerProjectileManager,
                                                    int k) {
-        for(int i = 0; i < getStates().length; i++){
-
-            if(getStates()[i] == State.ACTIVE){
-
-                double dx = getX()[i] - playerProjectileManager.getX()[k];
-                double dy = getY()[i] - playerProjectileManager.getY()[k];
-                double dist = Math.sqrt(dx * dx + dy * dy);
-
-                if(dist < getRadius()){
-
-                    explode(currentTime, i);
-                }
-            }
+        for(Enemy enemy : enemies) {
+            enemy.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
         }
     }
 

@@ -55,6 +55,21 @@ public class Enemy {
         }
     }
 
+    public void checkCollisionWithPlayerProjectile(long currentTime,
+                                                   PlayerProjectileManager playerProjectileManager,
+                                                   int k) {
+            if(getState() == State.ACTIVE){
+
+                double dx = getX() - playerProjectileManager.getX()[k];
+                double dy = getY() - playerProjectileManager.getY()[k];
+                double dist = Math.sqrt(dx * dx + dy * dy);
+
+                if(dist < getRadius()){
+                    explode(currentTime);
+                }
+            }
+    }
+
     public void explode(long currentTime) {
         state = State.EXPLODING;
         explosion_start = currentTime;
