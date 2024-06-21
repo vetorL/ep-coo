@@ -1,11 +1,10 @@
-import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class EnemyManager {
 
     private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
-    private final ArrayList<Enemy> enemies = new ArrayList<>();
+    private final ArrayList<Hostile> enemies = new ArrayList<>();
 
     public EnemyManager(long nextEnemy, double radius, int numberOfEnemies) {
         for (int i = 0; i < numberOfEnemies; i++) {
@@ -25,7 +24,7 @@ public abstract class EnemyManager {
 //    };
 
     public void checkCollisionWithPlayer(long currentTime, Player player) {
-        for(Enemy enemy : enemies) {
+        for(Hostile enemy : enemies) {
             enemy.checkCollisionWithPlayer(currentTime, player);
         }
     }
@@ -33,7 +32,7 @@ public abstract class EnemyManager {
     public void checkCollisionWithPlayerProjectile(long currentTime,
                                                    PlayerProjectileManager playerProjectileManager,
                                                    int k) {
-        for(Enemy enemy : enemies) {
+        for(Hostile enemy : enemies) {
             enemy.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
         }
     }
@@ -159,7 +158,7 @@ public abstract class EnemyManager {
     }
 
     public void setRadius(double radius) {
-        for (Enemy enemy : enemies) {
+        for (Hostile enemy : enemies) {
             enemy.setRadius(radius);
         }
     }

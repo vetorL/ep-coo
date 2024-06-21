@@ -1,6 +1,4 @@
-import java.awt.*;
-
-public class Enemy {
+public class Enemy implements Hostile {
 
     private State state;					// estados
     private double X;					// coordenadas x
