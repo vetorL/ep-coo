@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public interface Hostile {
 
     void checkCollisionWithPlayer(long currentTime, Player player);
@@ -7,6 +9,10 @@ public interface Hostile {
                                             int k);
 
     void explode(long currentTime);
+
+    void draw(long currentTime);
+
+    void init();
 
     State getState();
     double getX();

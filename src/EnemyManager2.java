@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class EnemyManager2 extends EnemyManager {
 
@@ -7,15 +8,16 @@ public class EnemyManager2 extends EnemyManager {
     private int count = 0;									// contagem de inimigos tipo 2 (usada na "formação de voo")
 
     public EnemyManager2(long nextEnemy) {
-        super(nextEnemy, 12.0, 10);
-    }
+        super(nextEnemy);
 
-    public void init() {
-        for(int i = 0; i < getStates().length; i++) {
-            State [] enemy2_states = getStates();
-            enemy2_states[i] = State.INACTIVE;
-            setStates(enemy2_states);
-        };
+        int numberOfEnemies = 10;
+        double enemyRadius = 12.0;
+        ArrayList<Hostile> enemies = new ArrayList<>();
+        for(int i = 0; i < numberOfEnemies; i++) {
+            enemies.add(new Enemy2(enemyRadius));
+        }
+
+        super.setEnemies(enemies);
     }
 
     public void tryLaunch(long currentTime) {
@@ -62,23 +64,6 @@ public class EnemyManager2 extends EnemyManager {
                     setNextEnemy((long) (currentTime + 3000 + Math.random() * 3000));
 
                 }
-            }
-        }
-    }
-
-    public void draw(long currentTime) {
-        for(int i = 0; i < getStates().length; i++){
-
-            if(getStates()[i] == State.EXPLODING){
-
-                double alpha = (currentTime - getExplosion_start()[i]) / (getExplosion_end()[i] - getExplosion_start()[i]);
-                GameLib.drawExplosion(getX()[i], getY()[i], alpha);
-            }
-
-            if(getStates()[i] == State.ACTIVE){
-
-                GameLib.setColor(Color.MAGENTA);
-                GameLib.drawDiamond(getX()[i], getY()[i], getRadius());
             }
         }
     }

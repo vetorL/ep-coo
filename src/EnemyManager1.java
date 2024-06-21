@@ -1,36 +1,21 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class EnemyManager1 extends EnemyManager {
 
     private long [] enemy1_nextShoot = new long[10];
 
     public EnemyManager1(long nextEnemy) {
-        super(nextEnemy, 9.0, 10);
-    }
+        super(nextEnemy);
 
-    public void init() {
-        for(int i = 0; i < getStates().length; i++) {
-            State [] enemy1_states = getStates();
-            enemy1_states[i] = State.INACTIVE;
-            setStates(enemy1_states);
-        };
-    }
-
-    public void draw(long currentTime) {
-        for(int i = 0; i < getStates().length; i++){
-
-            if(getStates()[i] == State.EXPLODING){
-
-                double alpha = (currentTime - getExplosion_start()[i]) / (getExplosion_end()[i] - getExplosion_start()[i]);
-                GameLib.drawExplosion(getX()[i], getY()[i], alpha);
-            }
-
-            if(getStates()[i] == State.ACTIVE){
-
-                GameLib.setColor(Color.CYAN);
-                GameLib.drawCircle(getX()[i], getY()[i], getRadius());
-            }
+        int numberOfEnemies = 10;
+        double enemyRadius = 9.0;
+        ArrayList<Hostile> enemies = new ArrayList<>();
+        for(int i = 0; i < numberOfEnemies; i++) {
+            enemies.add(new Enemy1(enemyRadius));
         }
+
+        super.setEnemies(enemies);
     }
 
     public void tryLaunch(long currentTime) {

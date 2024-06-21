@@ -1,4 +1,6 @@
-public class Enemy implements Hostile {
+import java.awt.*;
+
+public abstract class Enemy implements Hostile {
 
     private State state;					// estados
     private double X;					// coordenadas x
@@ -10,9 +12,11 @@ public class Enemy implements Hostile {
     private double explosion_end;		// instantes do próximo tiro
     private double radius;					// raio (tamanho do inimigo)
 //    private long nextEnemy;					// instante em que um novo inimigo deve aparecer
+    private Color color;
 
-    public Enemy(double radius) {
+    public Enemy(double radius, Color color) {
         setRadius(radius);
+        this.color = color;
     }
 
     public Enemy(State state, double x, double y,
@@ -30,19 +34,9 @@ public class Enemy implements Hostile {
         this.radius = radius;
     }
 
-//    public void draw(long currentTime, Color color) {
-//        if(getState() == State.EXPLODING){
-//
-//            double alpha = (currentTime - getExplosion_start()) / (getExplosion_end() - getExplosion_start());
-//            GameLib.drawExplosion(getX(), getY(), alpha);
-//        }
-//
-//        if(getState() == State.ACTIVE){
-//
-//            GameLib.setColor(color);
-//            GameLib.drawDiamond(getX(), getY(), getRadius());
-//        }
-//    }
+    public void init() {
+        setState(State.INACTIVE);
+    }
 
     public void checkCollisionWithPlayer(long currentTime, Player player) {
         double dx = getX() - player.getX();
@@ -145,5 +139,13 @@ public class Enemy implements Hostile {
 
     public void setRadius(double radius) {
         this.radius = radius;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

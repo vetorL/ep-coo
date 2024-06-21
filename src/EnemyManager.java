@@ -1,27 +1,29 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class EnemyManager {
 
     private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
-    private final ArrayList<Hostile> enemies = new ArrayList<>();
+    private ArrayList<Hostile> enemies;
 
-    public EnemyManager(long nextEnemy, double radius, int numberOfEnemies) {
-        for (int i = 0; i < numberOfEnemies; i++) {
-            enemies.add(new Enemy(radius));
-        }
+    public EnemyManager(long nextEnemy) {
         this.nextEnemy = nextEnemy;
     }
 
-    public abstract void init();
+    public void init() {
+        for (Hostile enemy : enemies) {
+            enemy.init();
+        }
+    };
 
     public abstract void tryLaunch(long currentTime);
 
-//    public void draw(long currentTime, Color color) {
-//        for (Enemy enemy : enemies) {
-//            enemy.draw(currentTime, color);
-//        }
-//    };
+    public void draw(long currentTime) {
+        for (Hostile enemy : enemies) {
+            enemy.draw(currentTime);
+        }
+    };
 
     public void checkCollisionWithPlayer(long currentTime, Player player) {
         for(Hostile enemy : enemies) {
@@ -169,5 +171,13 @@ public abstract class EnemyManager {
 
     public void setNextEnemy(long nextEnemy) {
         this.nextEnemy = nextEnemy;
+    }
+
+    public void setEnemies(ArrayList<Hostile> enemies) {
+        this.enemies = enemies;
+    }
+
+    public ArrayList<Hostile> getEnemies() {
+        return enemies;
     }
 }
