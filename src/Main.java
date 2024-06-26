@@ -69,7 +69,7 @@ public class Main {
 		
 		/* variáveis dos inimigos tipo 2 */
 
-		EnemyManager2 enemy2 = new EnemyManager2(currentTime + 7000);
+		DiamondManager enemy2 = new DiamondManager(currentTime + 7000);
 
 		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2) */
 

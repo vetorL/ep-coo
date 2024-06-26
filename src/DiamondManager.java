@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class EnemyManager2 extends EnemyManager {
+public class DiamondManager extends EnemyManager {
 
 
     private double spawnX = GameLib.WIDTH * 0.20;			// coordenada x do próximo inimigo tipo 2 a aparecer
     private int count = 0;									// contagem de inimigos tipo 2 (usada na "formação de voo")
 
-    public EnemyManager2(long nextEnemy) {
+    public DiamondManager(long nextEnemy) {
         super(nextEnemy);
 
         int numberOfEnemies = 10;

@@ -2,7 +2,7 @@ public class CollisionManager {
 
     public void verifyCollisions(long currentTime, Player player,
                                  PlayerProjectileManager playerProjectileManager,
-                                 CircleManager enemy1, EnemyManager2 enemy2,
+                                 CircleManager enemy1, DiamondManager enemy2,
                                  EnemyProjectileManager enemyProjectileManager) {
         if(player.getState() == State.ACTIVE){
 
