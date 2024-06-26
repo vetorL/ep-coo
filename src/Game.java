@@ -2,7 +2,7 @@ public class Game {
 
     private Player player;
     private PlayerProjectileManager playerProjectileManager;
-    private EnemyManager1 enemy1;
+    private CircleManager enemy1;
     private EnemyManager2 enemy2;
     private EnemyProjectileManager enemyProjectileManager;
     private Background firstBackground;
@@ -16,7 +16,7 @@ public class Game {
     private BackgroundManager backgroundManager;
 
     public Game(Player player, PlayerProjectileManager playerProjectileManager,
-                EnemyManager1 enemy1, EnemyManager2 enemy2, EnemyProjectileManager enemyProjectileManager,
+                CircleManager enemy1, EnemyManager2 enemy2, EnemyProjectileManager enemyProjectileManager,
                 Background firstBackground, Background secondBackground, long currentTime) {
         this.player = player;
         this.playerProjectileManager = playerProjectileManager;

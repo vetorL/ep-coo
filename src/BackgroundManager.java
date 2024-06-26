@@ -4,7 +4,7 @@ public class BackgroundManager {
 
     public void drawScene(long currentTime, long delta, Player player,
                      PlayerProjectileManager playerProjectileManager,
-                     EnemyManager1 enemy1,
+                     CircleManager enemy1,
                      EnemyManager2 enemy2,
                      EnemyProjectileManager enemyProjectileManager,
                      Background firstBackground,

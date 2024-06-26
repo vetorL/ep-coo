@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class EnemyManager1 extends EnemyManager {
+public class CircleManager extends EnemyManager {
 
     private long [] enemy1_nextShoot = new long[10];
 
-    public EnemyManager1(long nextEnemy) {
+    public CircleManager(long nextEnemy) {
         super(nextEnemy);
 
         int numberOfEnemies = 10;

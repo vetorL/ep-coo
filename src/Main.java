@@ -65,7 +65,7 @@ public class Main {
 
 		/* variáveis dos inimigos tipo 1 */
 
-		EnemyManager1 enemy1 = new EnemyManager1(currentTime + 2000);
+		CircleManager enemy1 = new CircleManager(currentTime + 2000);
 		
 		/* variáveis dos inimigos tipo 2 */
 
