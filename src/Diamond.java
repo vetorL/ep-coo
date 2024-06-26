@@ -1,8 +1,8 @@
 import java.awt.*;
 
-public class Enemy2 extends Enemy {
+public class Diamond extends Enemy {
 
-    public Enemy2(double radius) {
+    public Diamond(double radius) {
         super(radius, Color.MAGENTA);
     }
 
