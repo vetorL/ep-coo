@@ -1,54 +1,32 @@
+import java.util.List;
+
 public abstract class ProjectileManager {
 
-    private State [] states;                // estados
-    private double [] X;				    // coordenadas x
-    private double [] Y;				    // coordenadas y
-    private double [] VX;				    // velocidades no eixo x
-    private double [] VY;				    // velocidades no eixo y
+    private List<Projectile> projectiles;
 
-    public abstract void init();
-
-    public abstract void updatePosition(long delta);
-
-    public abstract void drawProjectiles();
-
-    public State[] getStates() {
-        return states;
+    public void init() {
+        for (Projectile projectile : projectiles) {
+            projectile.init();
+        }
     }
 
-    public void setStates(State[] states) {
-        this.states = states;
+    public void updatePosition(long delta) {
+        for (Projectile projectile : projectiles) {
+            projectile.updatePosition(delta);
+        }
     }
 
-    public double[] getX() {
-        return X;
+    public void drawProjectiles() {
+        for (Projectile projectile : projectiles) {
+            projectile.drawProjectile();
+        }
     }
 
-    public void setX(double[] x) {
-        X = x;
+    public void setProjectiles(List<Projectile> projectiles) {
+        this.projectiles = projectiles;
     }
 
-    public double[] getY() {
-        return Y;
-    }
-
-    public void setY(double[] y) {
-        Y = y;
-    }
-
-    public double[] getVX() {
-        return VX;
-    }
-
-    public void setVX(double[] VX) {
-        this.VX = VX;
-    }
-
-    public double[] getVY() {
-        return VY;
-    }
-
-    public void setVY(double[] VY) {
-        this.VY = VY;
+    public List<Projectile> getProjectiles() {
+        return projectiles;
     }
 }
