@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.ArrayList;
 
 public class EnemyManager1 extends EnemyManager {
@@ -12,7 +11,7 @@ public class EnemyManager1 extends EnemyManager {
         double enemyRadius = 9.0;
         ArrayList<Hostile> enemies = new ArrayList<>();
         for(int i = 0; i < numberOfEnemies; i++) {
-            enemies.add(new Enemy1(enemyRadius));
+            enemies.add(new Circle(enemyRadius));
         }
 
         super.setEnemies(enemies);
