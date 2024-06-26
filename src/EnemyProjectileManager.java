@@ -1,58 +1,20 @@
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EnemyProjectileManager extends ProjectileManager {
 
-    private double radius;         // raio (tamanho dos projéteis inimigos)
+    private double radius = 2.0;        // raio (tamanho dos projéteis inimigos)
 
     public EnemyProjectileManager() {
-        super.setStates(new State[200]);
-        super.setX(new double[200]);
-        super.setY(new double[200]);
-        super.setVX(new double[200]);
-        super.setVY(new double[200]);
-        this.radius = 2.0;
-    }
+        int numberOfProjectiles = 200;
 
-    public void init() {
-        for(int i = 0; i < getStates().length; i++) getStates()[i] = State.INACTIVE;
-    }
+        List<Projectile> projectiles = new ArrayList<>();
 
-    public void updatePosition(long delta) {
-        for(int i = 0; i < getStates().length; i++){
-
-            if(getStates()[i] == State.ACTIVE){
-
-                /* verificando se projétil saiu da tela */
-                if(getY()[i] > GameLib.HEIGHT) {
-
-                    State [] states = getStates();
-                    states[i] = State.INACTIVE;
-                    setStates(states);
-
-                }
-                else {
-
-                    double [] x = getX();
-                    x[i] += getVX()[i] * delta;
-                    setX(x);
-
-                    double [] y = getY();
-                    y[i] += getVY()[i] * delta;
-                    setY(y);
-                }
-            }
+        for(int i = 0; i < numberOfProjectiles; i++) {
+            projectiles.add(new EnemyProjectile(radius));
         }
-    }
 
-    public void drawProjectiles() {
-        for(int i = 0; i < getStates().length; i++){
-
-            if(getStates()[i] == State.ACTIVE){
-
-                GameLib.setColor(Color.RED);
-                GameLib.drawCircle(getX()[i], getY()[i], getRadius());
-            }
-        }
+        super.setProjectiles(projectiles);
     }
 
     public double getRadius() {
