@@ -39,32 +39,32 @@ public class Player {
         setExplosion_end(currentTime + 2000);
     }
 
-    public void fire(long currentTime, PlayerProjectileManager playerProjectileManager) {
+    public void fire(long currentTime) {
         if(currentTime > getNextShot()){
 
-            int free = Main.findFreeIndex(playerProjectileManager.getStates());
+            int free = Main.findFreeIndex(this.projectileManager.getStates());
 
-            if(free < playerProjectileManager.getStates().length){
+            if(free < this.projectileManager.getStates().length){
 
-                double [] projectile_X = playerProjectileManager.getX();
+                double [] projectile_X = this.projectileManager.getX();
                 projectile_X[free] = getX();
-                playerProjectileManager.setX(projectile_X);
+                this.projectileManager.setX(projectile_X);
 
-                double [] projectile_Y = playerProjectileManager.getY();
+                double [] projectile_Y = this.projectileManager.getY();
                 projectile_Y[free] = getY() - 2 * getRadius();
-                playerProjectileManager.setY(projectile_Y);
+                this.projectileManager.setY(projectile_Y);
 
-                double [] projectile_VX = playerProjectileManager.getVX();
+                double [] projectile_VX = this.projectileManager.getVX();
                 projectile_VX[free] = 0.0;
-                playerProjectileManager.setVX(projectile_VX);
+                this.projectileManager.setVX(projectile_VX);
 
-                double [] projectile_VY = playerProjectileManager.getVY();
+                double [] projectile_VY = this.projectileManager.getVY();
                 projectile_VY[free] = -1.0;
-                playerProjectileManager.setVY(projectile_VY);
+                this.projectileManager.setVY(projectile_VY);
 
-                State [] projectile_states = playerProjectileManager.getStates();
+                State [] projectile_states = this.projectileManager.getStates();
                 projectile_states[free] = State.ACTIVE;
-                playerProjectileManager.setStates(projectile_states);
+                this.projectileManager.setStates(projectile_states);
 
                 setNextShot(currentTime + 100);
             }
