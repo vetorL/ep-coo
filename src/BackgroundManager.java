@@ -3,12 +3,13 @@ import java.awt.*;
 public class BackgroundManager {
 
     public void drawScene(long currentTime, long delta, Player player,
-                     PlayerProjectileManager playerProjectileManager,
                      CircleManager enemy1,
                      DiamondManager enemy2,
                      EnemyProjectileManager enemyProjectileManager,
                      Background firstBackground,
                      Background secondBackground) {
+        PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
+
         /* desenhando plano fundo distante */
 
         GameLib.setColor(Color.DARK_GRAY);

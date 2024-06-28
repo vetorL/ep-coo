@@ -12,12 +12,14 @@ public class Player {
     private double explosion_end = 0;                   // instante do final da explosão
     private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
 
+    /* variáveis dos projéteis disparados pelo player */
     private final PlayerProjectileManager projectileManager =
             new PlayerProjectileManager();
 
     public Player(double x, double y) {
         this.X = x;
         this.Y = y;
+        this.projectileManager.init();
     }
 
     public void draw(long currentTime) {

@@ -1,7 +1,6 @@
 public class Game {
 
     private Player player;
-    private PlayerProjectileManager playerProjectileManager;
     private CircleManager enemy1;
     private DiamondManager enemy2;
     private EnemyProjectileManager enemyProjectileManager;
@@ -15,11 +14,10 @@ public class Game {
     private InputManager inputManager;
     private BackgroundManager backgroundManager;
 
-    public Game(Player player, PlayerProjectileManager playerProjectileManager,
+    public Game(Player player,
                 CircleManager enemy1, DiamondManager enemy2, EnemyProjectileManager enemyProjectileManager,
                 Background firstBackground, Background secondBackground, long currentTime) {
         this.player = player;
-        this.playerProjectileManager = playerProjectileManager;
         this.enemy1 = enemy1;
         this.enemy2 = enemy2;
         this.enemyProjectileManager = enemyProjectileManager;
@@ -51,27 +49,25 @@ public class Game {
         /* Verificação de colisões */
         /***************************/
 
-        collisionManager.verifyCollisions(currentTime, player,
-                playerProjectileManager, enemy1, enemy2, enemyProjectileManager);
+        collisionManager.verifyCollisions(currentTime, player, enemy1, enemy2, enemyProjectileManager);
 
         /***************************/
         /* Atualizações de estados */
         /***************************/
 
-        stateManager.updateStates(currentTime, player,
-                playerProjectileManager, enemy1, enemy2, enemyProjectileManager, delta);
+        stateManager.updateStates(currentTime, player, enemy1, enemy2, enemyProjectileManager, delta);
 
         /********************************************/
         /* Verificando entrada do usuário (teclado) */
         /********************************************/
 
-        this.running = inputManager.verifyInput(player, currentTime, delta, playerProjectileManager);
+        this.running = inputManager.verifyInput(player, currentTime, delta);
 
         /*******************/
         /* Desenho da cena */
         /*******************/
 
-        backgroundManager.drawScene(currentTime, delta, player, playerProjectileManager,
+        backgroundManager.drawScene(currentTime, delta, player,
                 enemy1, enemy2, enemyProjectileManager, firstBackground, secondBackground);
 
         /* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */

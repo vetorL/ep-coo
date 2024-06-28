@@ -1,7 +1,6 @@
 public class InputManager {
 
-    public boolean verifyInput(Player player, long currentTime,
-                            long delta, PlayerProjectileManager playerProjectileManager) {
+    public boolean verifyInput(Player player, long currentTime, long delta) {
         if(player.getState() == State.ACTIVE){
 
             if(GameLib.iskeyPressed(GameLib.KEY_UP)) {
@@ -17,7 +16,7 @@ public class InputManager {
                 player.moveRight(delta);
             }
             if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-                player.fire(currentTime, playerProjectileManager);
+                player.fire(currentTime);
             }
         }
 

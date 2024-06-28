@@ -1,10 +1,11 @@
 public class StateManager {
 
     public void updateStates(long currentTime, Player player,
-                             PlayerProjectileManager playerProjectileManager,
                              CircleManager enemy1, DiamondManager enemy2,
                              EnemyProjectileManager enemyProjectileManager,
                              long delta) {
+        PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
+
         /* projeteis (player) */
 
         playerProjectileManager.updatePosition(delta);
