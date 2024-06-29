@@ -91,17 +91,9 @@ public class DiamondManager extends EnemyManager {
                     boolean shootNow = false;
                     double previousY = diamond.getY();
 
-                    double [] enemy2_X = getX();
-                    enemy2_X[i] += diamond.getV() * Math.cos(diamond.getAngle()) * delta;
-                    setX(enemy2_X);
-
-                    double [] enemy2_Y = getY();
-                    enemy2_Y[i] += diamond.getV() * Math.sin(diamond.getAngle()) * delta * (-1.0);
-                    setY(enemy2_Y);
-
-                    double [] enemy2_angle = getAngle();
-                    enemy2_angle[i] += diamond.getRV() * delta;
-                    setAngle(enemy2_angle);
+                    diamond.setX(diamond.getX() + (diamond.getV() * Math.cos(diamond.getAngle()) * delta));
+                    diamond.setY(diamond.getY() + (diamond.getV() * Math.sin(diamond.getAngle()) * delta * (-1.0)));
+                    diamond.setAngle(diamond.getAngle() + (diamond.getRV() * delta));
 
                     double threshold = GameLib.HEIGHT * 0.30;
 
