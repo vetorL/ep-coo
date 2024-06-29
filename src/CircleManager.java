@@ -84,33 +84,21 @@ public class CircleManager extends EnemyManager {
                     circle.setAngle(circle.getAngle() + (circle.getRV() * delta));
 
                     if(currentTime > enemy1_nextShoot[i] && circle.getY() < player.getY()){
+                        Projectile projectile = new EnemyProjectile(enemyProjectileManager.getRadius());
 
-                        int free = Main.findFreeIndex(enemyProjectileManager.getStates());
+                        projectile.setX(circle.getX());
 
-                        if(free < enemyProjectileManager.getStates().length){
+                        projectile.setY(circle.getY());
 
-                            double [] e_projectile_X = enemyProjectileManager.getX();
-                            e_projectile_X[free] = getX()[i];
-                            enemyProjectileManager.setX(e_projectile_X);
+                        projectile.setVX(Math.cos(circle.getAngle()) * 0.45);
 
-                            double [] e_projectile_Y = enemyProjectileManager.getY();
-                            e_projectile_Y[free] = getY()[i];
-                            enemyProjectileManager.setY(e_projectile_Y);
+                        projectile.setVY(Math.sin(circle.getAngle()) * 0.45 * (-1.0));
 
-                            double [] e_projectile_VX = enemyProjectileManager.getVX();
-                            e_projectile_VX[free] = Math.cos(getAngle()[i]) * 0.45;
-                            enemyProjectileManager.setVX(e_projectile_VX);
+                        projectile.setState(State.ACTIVE);
 
-                            double [] e_projectile_VY = enemyProjectileManager.getVY();
-                            e_projectile_VY[free] = Math.sin(getAngle()[i]) * 0.45 * (-1.0);
-                            enemyProjectileManager.setVY(e_projectile_VY);
+                        enemy1_nextShoot[i] = (long) (currentTime + 200 + Math.random() * 500);
 
-                            State [] e_projectile_states = enemyProjectileManager.getStates();
-                            e_projectile_states[free] = State.ACTIVE;
-                            enemyProjectileManager.setStates(e_projectile_states);
-
-                            enemy1_nextShoot[i] = (long) (currentTime + 200 + Math.random() * 500);
-                        }
+                        enemyProjectileManager.add(projectile);
                     }
                 }
             }
