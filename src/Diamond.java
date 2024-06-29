@@ -2,8 +2,8 @@ import java.awt.*;
 
 public class Diamond extends Enemy {
 
-    public Diamond(double radius) {
-        super(radius, Color.MAGENTA);
+    public Diamond() {
+        super(12.0, Color.MAGENTA);
     }
 
     public void draw(long currentTime) {
