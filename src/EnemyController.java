@@ -25,4 +25,10 @@ public class EnemyController {
     public EnemyProjectileManager getEnemyProjectileManager() {
         return enemyProjectileManager;
     }
+
+    public void dump() {
+        this.diamondManager.dump();
+        this.circleManager.dump();
+        this.enemyProjectileManager.dump();
+    }
 }
