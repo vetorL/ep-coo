@@ -153,35 +153,19 @@ public class DiamondManager extends EnemyManager {
                         int [] freeArray = Main.findFreeIndex(enemyProjectileManager.getStates(), angles.length);
 
                         for(int k = 0; k < freeArray.length; k++){
+                            double a = angles[k] + Math.random() * Math.PI/6 - Math.PI/12;
+                            double vx = Math.cos(a);
+                            double vy = Math.sin(a);
 
-                            int free = freeArray[k];
+                            Projectile projectile = new EnemyProjectile(enemyProjectileManager.getRadius());
 
-                            if(free < enemyProjectileManager.getStates().length){
+                            projectile.setX(getX()[i]);
+                            projectile.setY(getY()[i]);
+                            projectile.setVX(vx * 0.30);
+                            projectile.setVY(vy * 0.30);
+                            projectile.setState(State.ACTIVE);
 
-                                double a = angles[k] + Math.random() * Math.PI/6 - Math.PI/12;
-                                double vx = Math.cos(a);
-                                double vy = Math.sin(a);
-
-                                double [] e_projectile_X = enemyProjectileManager.getX();
-                                e_projectile_X[free] = getX()[i];
-                                enemyProjectileManager.setX(e_projectile_X);
-
-                                double [] e_projectile_Y = enemyProjectileManager.getY();
-                                e_projectile_Y[free] = getY()[i];
-                                enemyProjectileManager.setY(e_projectile_Y);
-
-                                double [] e_projectile_VX = enemyProjectileManager.getVX();
-                                e_projectile_VX[free] = vx * 0.30;
-                                enemyProjectileManager.setVX(e_projectile_VX);
-
-                                double [] e_projectile_VY = enemyProjectileManager.getVY();
-                                e_projectile_VY[free] = vy * 0.30;
-                                enemyProjectileManager.setVY(e_projectile_VY);
-
-                                State [] e_projectile_states = enemyProjectileManager.getStates();
-                                e_projectile_states[free] = State.ACTIVE;
-                                enemyProjectileManager.setStates(e_projectile_states);
-                            }
+                            enemyProjectileManager.add(projectile);
                         }
                     }
                 }
