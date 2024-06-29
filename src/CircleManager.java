@@ -63,40 +63,27 @@ public class CircleManager extends EnemyManager {
                                Player player) {
         for(int i = 0; i < getStates().length; i++){
 
-            if(getStates()[i] == State.EXPLODING){
+            Enemy circle = getEnemies().get(i);
 
-                if(currentTime > getExplosion_end()[i]){
-
-                    State [] enemy1_states = getStates();
-                    enemy1_states[i] = State.INACTIVE;
-                    setStates(enemy1_states);
-
+            if(circle.getState() == State.EXPLODING){
+                if(currentTime > circle.getExplosion_end()){
+                    circle.setState(State.INACTIVE);
                 }
             }
 
-            if(getStates()[i] == State.ACTIVE){
+            if(circle.getState() == State.ACTIVE){
 
                 /* verificando se inimigo saiu da tela */
                 if(getY()[i] > GameLib.HEIGHT + 10) {
-                    State [] enemy1_states = getStates();
-                    enemy1_states[i] = State.INACTIVE;
-                    setStates(enemy1_states);
+                    circle.setState(State.INACTIVE);
                 }
                 else {
 
-                    double [] enemy1_X = getX();
-                    enemy1_X[i] += getV()[i] * Math.cos(getAngle()[i]) * delta;
-                    setX(enemy1_X);
+                    circle.setX(circle.getX() + (circle.getV() * Math.cos(circle.getAngle()) * delta));
+                    circle.setY(circle.getY() + (circle.getV() * Math.sin(circle.getAngle()) * delta * (-1.0)));
+                    circle.setAngle(circle.getAngle() + (circle.getRV() * delta));
 
-                    double [] enemy1_Y = getY();
-                    enemy1_Y[i] += getV()[i] * Math.sin(getAngle()[i]) * delta * (-1.0);
-                    setY(enemy1_Y);
-
-                    double [] enemy1_angle = getAngle();
-                    enemy1_angle[i] += getRV()[i] * delta;
-                    setAngle(enemy1_angle);
-
-                    if(currentTime > enemy1_nextShoot[i] && getY()[i] < player.getY()){
+                    if(currentTime > enemy1_nextShoot[i] && circle.getY() < player.getY()){
 
                         int free = Main.findFreeIndex(enemyProjectileManager.getStates());
 
