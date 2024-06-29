@@ -8,10 +8,9 @@ public class CircleManager extends EnemyManager {
         super(nextEnemy);
 
         int numberOfEnemies = 10;
-        double enemyRadius = 9.0;
         ArrayList<Enemy> enemies = new ArrayList<>();
         for(int i = 0; i < numberOfEnemies; i++) {
-            enemies.add(new Circle(enemyRadius));
+            enemies.add(new Circle());
         }
 
         super.setEnemies(enemies);

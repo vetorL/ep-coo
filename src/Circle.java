@@ -2,8 +2,8 @@ import java.awt.*;
 
 public class Circle extends Enemy {
 
-    public Circle(double radius) {
-        super(radius, Color.CYAN);
+    public Circle() {
+        super(9.0, Color.CYAN);
     }
 
     public void draw(long currentTime) {
