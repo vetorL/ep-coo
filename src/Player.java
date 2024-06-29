@@ -12,8 +12,8 @@ public class Player {
     private double explosion_end = 0;                   // instante do final da explosão
     private double damage_end = 0;
     private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
-    private int totalHealthPoints = 3;
-    private int currenHealthPoints = 3;
+    private int totalHealthPoints = 10;
+    private int currenHealthPoints = 10;
 
     /* variáveis dos projéteis disparados pelo player */
     private final PlayerProjectileManager projectileManager =
@@ -25,11 +25,27 @@ public class Player {
         this.projectileManager.init();
     }
 
+    public void drawHealthBar() {
+        double y = 50;
+
+        GameLib.setColor(Color.RED);
+        GameLib.drawLine(GameLib.WIDTH / 4, y, GameLib.WIDTH * 3 / 4, y);
+
+
+        double healthBarWidth = GameLib.WIDTH * 3 / (double) 4 - GameLib.WIDTH / (double) 4;
+        double toReduce = healthBarWidth - healthBarWidth * currenHealthPoints / (double) totalHealthPoints;
+
+        GameLib.setColor(Color.GREEN);
+        GameLib.drawLine(GameLib.WIDTH / (double) 4, y, GameLib.WIDTH * 3 / (double) 4 - toReduce, y);
+    }
+
     public void draw(long currentTime) {
         if(getState() == State.EXPLODING){
 
             double alpha = (currentTime - getExplosion_start()) / (getExplosion_end() - getExplosion_start());
             GameLib.drawExplosion(getX(), getY(), alpha);
+
+            return;
         } else if (getState() == State.DAMAGED) {
             GameLib.setColor(Color.WHITE);
             GameLib.drawPlayer(getX(), getY(), getRadius());
@@ -39,6 +55,8 @@ public class Player {
             GameLib.setColor(Color.BLUE);
             GameLib.drawPlayer(getX(), getY(), getRadius());
         }
+
+        drawHealthBar();
     }
 
     public void takeDamage(long currentTime) {
