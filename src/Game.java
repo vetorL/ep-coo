@@ -13,6 +13,7 @@ public class Game {
     private StateManager stateManager;
     private InputManager inputManager;
     private BackgroundManager backgroundManager;
+    private GarbageController garbageController;
 
     public Game(Player player,
                 CircleManager enemy1, DiamondManager enemy2, EnemyProjectileManager enemyProjectileManager,
@@ -28,6 +29,7 @@ public class Game {
         this.stateManager = new StateManager();
         this.inputManager = new InputManager();
         this.backgroundManager = new BackgroundManager();
+        this.garbageController = new GarbageController();
     }
 
     public boolean isRunning() {
@@ -69,6 +71,11 @@ public class Game {
 
         backgroundManager.drawScene(currentTime, delta, player,
                 enemy1, enemy2, enemyProjectileManager, firstBackground, secondBackground);
+
+        /*********************************/
+        /* Limpa entidades inutilizadas */
+        /********************************/
+        garbageController.dump(enemyProjectileManager);
 
         /* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */
 
