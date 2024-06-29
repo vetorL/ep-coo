@@ -10,7 +10,9 @@ public class Player {
     private double radius = 12.0;                       // raio (tamanho aproximado do 'player')
     private double explosion_start = 0;                 // instante do início da explosão
     private double explosion_end = 0;                   // instante do final da explosão
+    private double damage_end = 0;
     private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
+    private int healthpoints = 3;
 
     /* variáveis dos projéteis disparados pelo player */
     private final PlayerProjectileManager projectileManager =
@@ -27,11 +29,24 @@ public class Player {
 
             double alpha = (currentTime - getExplosion_start()) / (getExplosion_end() - getExplosion_start());
             GameLib.drawExplosion(getX(), getY(), alpha);
+        } else if (getState() == State.DAMAGED) {
+            GameLib.setColor(Color.WHITE);
+            GameLib.drawPlayer(getX(), getY(), getRadius());
         }
         else{
 
             GameLib.setColor(Color.BLUE);
             GameLib.drawPlayer(getX(), getY(), getRadius());
+        }
+    }
+
+    public void takeDamage(long currentTime) {
+        healthpoints = healthpoints - 1;
+        if(healthpoints == 0){
+            explode(currentTime);
+        } else {
+            setState(State.DAMAGED);
+            setDamage_end(currentTime + 500);
         }
     }
 
@@ -77,25 +92,36 @@ public class Player {
                                    EnemyProjectileManager enemyProjectileManager,
                                    CircleManager circleManager,
                                    DiamondManager diamondManager) {
-        checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
-        checkCollisionWithEnemy(currentTime, circleManager);
-        checkCollisionWithEnemy(currentTime, diamondManager);
+        boolean a = checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
+        boolean b = checkCollisionWithEnemy(currentTime, circleManager);
+        boolean c = checkCollisionWithEnemy(currentTime, diamondManager);
+
+        if(a || b || c) {
+            takeDamage(currentTime);
+        }
     }
 
-    public void checkCollisionWithEnemy(long currentTime, EnemyManager enemyManager) {
+    public boolean checkCollisionWithEnemy(long currentTime, EnemyManager enemyManager) {
+        boolean collision = false;
+
         for(Enemy enemy : enemyManager.getEnemies()) {
             double dx = enemy.getX() - getX();
             double dy = enemy.getY() - getY();
             double dist = Math.sqrt(dx * dx + dy * dy);
 
             if(dist < (getRadius() + enemy.getRadius()) * 0.8){
-                explode(currentTime);
+                collision = true;
+//                explode(currentTime);
             }
         }
+
+        return collision;
     }
 
-    public void checkCollisionWithEnemyProjectile(long currentTime,
+    public boolean checkCollisionWithEnemyProjectile(long currentTime,
                                                   EnemyProjectileManager enemyProjectileManager) {
+        boolean collision = false;
+
         for(int i = 0; i < enemyProjectileManager.getStates().length; i++){
 
             double dx = enemyProjectileManager.getX()[i] - getX();
@@ -103,9 +129,12 @@ public class Player {
             double dist = Math.sqrt(dx * dx + dy * dy);
 
             if(dist < (getRadius() + enemyProjectileManager.getRadius()) * 0.8){
-                explode(currentTime);
+                collision = true;
+//                explode(currentTime);
             }
         }
+
+        return collision;
     }
 
     public double getX() {
@@ -189,5 +218,13 @@ public class Player {
 
     public PlayerProjectileManager getProjectileManager() {
         return projectileManager;
+    }
+
+    public void setDamage_end(double damage_end) {
+        this.damage_end = damage_end;
+    }
+
+    public double getDamage_end() {
+        return damage_end;
     }
 }
