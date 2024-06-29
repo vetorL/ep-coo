@@ -75,7 +75,7 @@ public class Game {
         /*********************************/
         /* Limpa entidades inutilizadas */
         /********************************/
-        garbageController.dump(enemyProjectileManager);
+        garbageController.dump(enemyProjectileManager, player.getProjectileManager());
 
         /* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */
 
