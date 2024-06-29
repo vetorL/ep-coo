@@ -11,7 +11,7 @@ public class DiamondManager extends EnemyManager {
 
         int numberOfEnemies = 10;
         double enemyRadius = 12.0;
-        ArrayList<Hostile> enemies = new ArrayList<>();
+        ArrayList<Enemy> enemies = new ArrayList<>();
         for(int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new Diamond(enemyRadius));
         }

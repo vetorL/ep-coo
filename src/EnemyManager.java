@@ -5,14 +5,14 @@ public abstract class EnemyManager {
 
     private long nextEnemy;					// instante em que um novo inimigo deve aparecer
 
-    private ArrayList<Hostile> enemies;
+    private ArrayList<Enemy> enemies;
 
     public EnemyManager(long nextEnemy) {
         this.nextEnemy = nextEnemy;
     }
 
     public void init() {
-        for (Hostile enemy : enemies) {
+        for (Enemy enemy : enemies) {
             enemy.init();
         }
     };
@@ -20,7 +20,7 @@ public abstract class EnemyManager {
     public abstract void tryLaunch(long currentTime);
 
     public void draw(long currentTime) {
-        for (Hostile enemy : enemies) {
+        for (Enemy enemy : enemies) {
             enemy.draw(currentTime);
         }
     };
@@ -28,7 +28,7 @@ public abstract class EnemyManager {
     public void checkCollisionWithPlayerProjectile(long currentTime,
                                                    PlayerProjectileManager playerProjectileManager,
                                                    int k) {
-        for(Hostile enemy : enemies) {
+        for(Enemy enemy : enemies) {
             enemy.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
         }
     }
@@ -154,7 +154,7 @@ public abstract class EnemyManager {
     }
 
     public void setRadius(double radius) {
-        for (Hostile enemy : enemies) {
+        for (Enemy enemy : enemies) {
             enemy.setRadius(radius);
         }
     }
@@ -167,11 +167,11 @@ public abstract class EnemyManager {
         this.nextEnemy = nextEnemy;
     }
 
-    public void setEnemies(ArrayList<Hostile> enemies) {
+    public void setEnemies(ArrayList<Enemy> enemies) {
         this.enemies = enemies;
     }
 
-    public ArrayList<Hostile> getEnemies() {
+    public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
 }

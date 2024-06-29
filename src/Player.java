@@ -99,7 +99,7 @@ public class Player {
     }
 
     public void checkCollisionWithEnemy(long currentTime, EnemyManager enemyManager) {
-        for(Hostile enemy : enemyManager.getEnemies()) {
+        for(Enemy enemy : enemyManager.getEnemies()) {
             double dx = enemy.getX() - getX();
             double dy = enemy.getY() - getY();
             double dist = Math.sqrt(dx * dx + dy * dy);

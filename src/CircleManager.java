@@ -9,7 +9,7 @@ public class CircleManager extends EnemyManager {
 
         int numberOfEnemies = 10;
         double enemyRadius = 9.0;
-        ArrayList<Hostile> enemies = new ArrayList<>();
+        ArrayList<Enemy> enemies = new ArrayList<>();
         for(int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new Circle(enemyRadius));
         }

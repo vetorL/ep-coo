@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Enemy implements Hostile {
+public abstract class Enemy {
 
     private State state;					// estados
     private double X;					// coordenadas x
@@ -13,6 +13,8 @@ public abstract class Enemy implements Hostile {
     private double radius;					// raio (tamanho do inimigo)
 //    private long nextEnemy;					// instante em que um novo inimigo deve aparecer
     private Color color;
+
+    public abstract void draw(long currentTime);
 
     public Enemy(double radius, Color color) {
         setRadius(radius);
