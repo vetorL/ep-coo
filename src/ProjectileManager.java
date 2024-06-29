@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ProjectileManager {
@@ -9,6 +8,10 @@ public abstract class ProjectileManager {
         for (Projectile projectile : projectiles) {
             projectile.init();
         }
+    }
+
+    public void add(Projectile projectile) {
+        projectiles.add(projectile);
     }
 
     public void updatePosition(long delta) {
