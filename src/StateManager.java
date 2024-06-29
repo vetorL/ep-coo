@@ -24,6 +24,11 @@ public class StateManager {
 
                 player.setState(State.ACTIVE);
             }
+        } else if(player.getState() == State.DAMAGED){
+            if(currentTime > player.getDamage_end()){
+
+                player.setState(State.ACTIVE);
+            }
         }
     }
 
