@@ -1,7 +1,7 @@
 public class Game {
 
     private Player player;
-    private CircleManager enemy1;
+    private CircleManager circleManager;
     private DiamondManager diamondManager;
     private EnemyProjectileManager enemyProjectileManager;
     private long currentTime;
@@ -14,10 +14,10 @@ public class Game {
     private GarbageController garbageController;
 
     public Game(Player player,
-                CircleManager enemy1, DiamondManager diamondManager, EnemyProjectileManager enemyProjectileManager,
+                CircleManager circleManager, DiamondManager diamondManager, EnemyProjectileManager enemyProjectileManager,
                 long currentTime) {
         this.player = player;
-        this.enemy1 = enemy1;
+        this.circleManager = circleManager;
         this.diamondManager = diamondManager;
         this.enemyProjectileManager = enemyProjectileManager;
         this.currentTime = currentTime;
@@ -47,13 +47,13 @@ public class Game {
         /* Verificação de colisões */
         /***************************/
 
-        collisionManager.verifyCollisions(currentTime, player, enemy1, diamondManager, enemyProjectileManager);
+        collisionManager.verifyCollisions(currentTime, player, circleManager, diamondManager, enemyProjectileManager);
 
         /***************************/
         /* Atualizações de estados */
         /***************************/
 
-        stateManager.updateStates(currentTime, player, enemy1, diamondManager, enemyProjectileManager, delta);
+        stateManager.updateStates(currentTime, player, circleManager, diamondManager, enemyProjectileManager, delta);
 
         /********************************************/
         /* Verificando entrada do usuário (teclado) */
@@ -66,7 +66,7 @@ public class Game {
         /*******************/
 
         backgroundManager.drawScene(currentTime, delta, player,
-                enemy1, diamondManager, enemyProjectileManager);
+                circleManager, diamondManager, enemyProjectileManager);
 
         /*********************************/
         /* Limpa entidades inutilizadas */
