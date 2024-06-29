@@ -2,12 +2,24 @@ import java.awt.*;
 
 public class BackgroundManager {
 
+    /* estrelas que formam o fundo de primeiro plano */
+    private final Background firstBackground;
+
+    /* estrelas que formam o fundo de segundo plano */
+    private final Background secondBackground;
+
+    public BackgroundManager() {
+        firstBackground = new Background(20, 0.070, 0.0);
+        secondBackground = new Background(50, 0.045, 0.0);
+
+        firstBackground.init();
+        secondBackground.init();
+    }
+
     public void drawScene(long currentTime, long delta, Player player,
                      CircleManager enemy1,
                      DiamondManager enemy2,
-                     EnemyProjectileManager enemyProjectileManager,
-                     Background firstBackground,
-                     Background secondBackground) {
+                     EnemyProjectileManager enemyProjectileManager) {
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
 
         /* desenhando plano fundo distante */

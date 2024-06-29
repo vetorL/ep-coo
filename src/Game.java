@@ -4,8 +4,6 @@ public class Game {
     private CircleManager enemy1;
     private DiamondManager diamondManager;
     private EnemyProjectileManager enemyProjectileManager;
-    private Background firstBackground;
-    private Background secondBackground;
     private long currentTime;
     private long delta;
     private boolean running = true;
@@ -17,13 +15,11 @@ public class Game {
 
     public Game(Player player,
                 CircleManager enemy1, DiamondManager diamondManager, EnemyProjectileManager enemyProjectileManager,
-                Background firstBackground, Background secondBackground, long currentTime) {
+                long currentTime) {
         this.player = player;
         this.enemy1 = enemy1;
         this.diamondManager = diamondManager;
         this.enemyProjectileManager = enemyProjectileManager;
-        this.firstBackground = firstBackground;
-        this.secondBackground = secondBackground;
         this.currentTime = currentTime;
         this.collisionManager = new CollisionManager();
         this.stateManager = new StateManager();
@@ -70,7 +66,7 @@ public class Game {
         /*******************/
 
         backgroundManager.drawScene(currentTime, delta, player,
-                enemy1, diamondManager, enemyProjectileManager, firstBackground, secondBackground);
+                enemy1, diamondManager, enemyProjectileManager);
 
         /*********************************/
         /* Limpa entidades inutilizadas */

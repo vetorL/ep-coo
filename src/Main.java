@@ -70,22 +70,12 @@ public class Main {
 		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2) */
 
 		EnemyProjectileManager enemyProjectileManager = new EnemyProjectileManager();
-
-		/* estrelas que formam o fundo de primeiro plano */
-
-		Background firstBackground = new Background(20, 0.070, 0.0);
-		
-		/* estrelas que formam o fundo de segundo plano */
-
-		Background secondBackground = new Background(50, 0.045, 0.0);
 		
 		/* inicializações */
 		
 		enemyProjectileManager.init();
 		enemy1.init();
 		enemy2.init();
-		firstBackground.init();
-		secondBackground.init();
 						
 		/* iniciado interface gráfica */
 		
@@ -111,8 +101,7 @@ public class Main {
 		/*************************************************************************************************/
 
 		Game game = new Game(
-				player, enemy1, enemy2, enemyProjectileManager,
-				firstBackground, secondBackground, currentTime
+				player, enemy1, enemy2, enemyProjectileManager, currentTime
 		);
 
 		while(game.isRunning()){
