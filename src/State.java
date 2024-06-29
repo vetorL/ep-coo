@@ -2,5 +2,5 @@
 /* do jogo ('player', projeteis ou inimigos) podem assumir. */
 
 public enum State {
-    INACTIVE, ACTIVE, EXPLODING
+    INACTIVE, ACTIVE, EXPLODING, DAMAGED
 }
