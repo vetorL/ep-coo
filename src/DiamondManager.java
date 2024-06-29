@@ -71,78 +71,60 @@ public class DiamondManager extends EnemyManager {
                                EnemyProjectileManager enemyProjectileManager,
                                long delta) {
         for(int i = 0; i < getStates().length; i++){
+            Enemy diamond = getEnemies().get(i);
 
-            if(getStates()[i] == State.EXPLODING){
-
-                if(currentTime > getExplosion_end()[i]){
-                    State [] enemy2_states = getStates();
-                    enemy2_states[i] = State.INACTIVE;
-                    setStates(enemy2_states);
+            if(diamond.getState() == State.EXPLODING){
+                // quando terminar a explosao, colocar State como INACTIVE
+                if(currentTime > diamond.getExplosion_end()){
+                    diamond.setState(State.INACTIVE);
                 }
             }
 
-            if(getStates()[i] == State.ACTIVE){
+            if(diamond.getState() == State.ACTIVE){
 
                 /* verificando se inimigo saiu da tela */
-                if(	getX()[i] < -10 || getX()[i] > GameLib.WIDTH + 10 ) {
-                    State [] enemy2_states = getStates();
-                    enemy2_states[i] = State.INACTIVE;
-                    setStates(enemy2_states);
+                if(	diamond.getX() < -10 || diamond.getX() > GameLib.WIDTH + 10 ) {
+                    diamond.setState(State.INACTIVE);
                 }
                 else {
 
                     boolean shootNow = false;
-                    double previousY = getY()[i];
+                    double previousY = diamond.getY();
 
                     double [] enemy2_X = getX();
-                    enemy2_X[i] += getV()[i] * Math.cos(getAngle()[i]) * delta;
+                    enemy2_X[i] += diamond.getV() * Math.cos(diamond.getAngle()) * delta;
                     setX(enemy2_X);
 
                     double [] enemy2_Y = getY();
-                    enemy2_Y[i] += getV()[i] * Math.sin(getAngle()[i]) * delta * (-1.0);
+                    enemy2_Y[i] += diamond.getV() * Math.sin(diamond.getAngle()) * delta * (-1.0);
                     setY(enemy2_Y);
 
                     double [] enemy2_angle = getAngle();
-                    enemy2_angle[i] += getRV()[i] * delta;
+                    enemy2_angle[i] += diamond.getRV() * delta;
                     setAngle(enemy2_angle);
 
                     double threshold = GameLib.HEIGHT * 0.30;
 
-                    if(previousY < threshold && getY()[i] >= threshold) {
+                    if(previousY < threshold && diamond.getY() >= threshold) {
 
-                        if(getX()[i] < GameLib.WIDTH / 2) {
-                            double [] enemy2_RV = getRV();
-                            enemy2_RV[i] = 0.003;
-                            setRV(enemy2_RV);
+                        if(diamond.getX() < GameLib.WIDTH / 2) {
+                            diamond.setRV(0.003);
                         }
                         else{
-                            double [] enemy2_RV = getRV();
-                            enemy2_RV[i] = -0.003;
-                            setRV(enemy2_RV);
+                            diamond.setRV(-0.003);
                         };
                     }
 
-                    if(getRV()[i] > 0 && Math.abs(getAngle()[i] - 3 * Math.PI) < 0.05){
-                        double [] enemy2_RV = getRV();
-                        enemy2_RV[i] = 0.0;
-                        setRV(enemy2_RV);
-
-//                        double [] enemy2_angle = getAngle();
-                        enemy2_angle[i] = 3 * Math.PI;
-                        setAngle(enemy2_angle);
+                    if(diamond.getRV() > 0 && Math.abs(diamond.getAngle() - 3 * Math.PI) < 0.05){
+                        diamond.setRV(0.0);
+                        diamond.setAngle(3 * Math.PI);
 
                         shootNow = true;
                     }
 
-                    if(getRV()[i] < 0 && Math.abs(getAngle()[i]) < 0.05){
-
-                        double [] enemy2_RV = getRV();
-                        enemy2_RV[i] = 0.0;
-                        setRV(enemy2_RV);
-
-//                        double [] enemy2_angle = getAngle();
-                        enemy2_angle[i] = 0.0;
-                        setAngle(enemy2_angle);
+                    if(diamond.getRV() < 0 && Math.abs(diamond.getAngle()) < 0.05){
+                        diamond.setRV(0.0);
+                        diamond.setAngle(0.0);
 
                         shootNow = true;
                     }
@@ -159,8 +141,8 @@ public class DiamondManager extends EnemyManager {
 
                             Projectile projectile = new EnemyProjectile(enemyProjectileManager.getRadius());
 
-                            projectile.setX(getX()[i]);
-                            projectile.setY(getY()[i]);
+                            projectile.setX(diamond.getX());
+                            projectile.setY(diamond.getY());
                             projectile.setVX(vx * 0.30);
                             projectile.setVY(vy * 0.30);
                             projectile.setState(State.ACTIVE);
