@@ -17,10 +17,11 @@ public class BackgroundManager {
     }
 
     public void drawScene(long currentTime, long delta, Player player,
-                     CircleManager enemy1,
-                     DiamondManager enemy2,
-                     EnemyProjectileManager enemyProjectileManager) {
+                     EnemyController enemyController) {
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
+        EnemyProjectileManager enemyProjectileManager = enemyController.getEnemyProjectileManager();
+        CircleManager circleManager = enemyController.getCircleManager();
+        DiamondManager diamondManager = enemyController.getDiamondManager();
 
         /* desenhando plano fundo distante */
 
@@ -47,11 +48,11 @@ public class BackgroundManager {
 
         /* desenhando inimigos (tipo 1) */
 
-        enemy1.draw(currentTime);
+        circleManager.draw(currentTime);
 
         /* desenhando inimigos (tipo 2) */
 
-        enemy2.draw(currentTime);
+        diamondManager.draw(currentTime);
 
         /* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
 

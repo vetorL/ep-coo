@@ -1,9 +1,12 @@
 public class StateManager {
 
     public void updateStates(long currentTime, Player player,
-                             CircleManager enemy1, DiamondManager enemy2,
-                             EnemyProjectileManager enemyProjectileManager,
+                             EnemyController enemyController,
                              long delta) {
+        EnemyProjectileManager enemyProjectileManager = enemyController.getEnemyProjectileManager();
+        CircleManager circleManager = enemyController.getCircleManager();
+        DiamondManager diamondManager = enemyController.getDiamondManager();
+
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
 
         /* projeteis (player) */
@@ -16,19 +19,19 @@ public class StateManager {
 
         /* inimigos tipo 1 */
 
-        enemy1.updatePosition(currentTime, enemyProjectileManager, delta, player);
+        circleManager.updatePosition(currentTime, enemyProjectileManager, delta, player);
 
         /* inimigos tipo 2 */
 
-        enemy2.updatePosition(currentTime, enemyProjectileManager, delta);
+        diamondManager.updatePosition(currentTime, enemyProjectileManager, delta);
 
         /* verificando se novos inimigos (tipo 1) devem ser "lançados" */
 
-        enemy1.tryLaunch(currentTime);
+        circleManager.tryLaunch(currentTime);
 
         /* verificando se novos inimigos (tipo 2) devem ser "lançados" */
 
-        enemy2.tryLaunch(currentTime);
+        diamondManager.tryLaunch(currentTime);
 
         /* Verificando se a explosão do player já acabou.         */
         /* Ao final da explosão, o player volta a ser controlável */

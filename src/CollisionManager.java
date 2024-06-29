@@ -1,9 +1,10 @@
 public class CollisionManager {
 
-    public void verifyCollisions(long currentTime, Player player,
-                                 CircleManager circleManager, DiamondManager diamondManager,
-                                 EnemyProjectileManager enemyProjectileManager) {
+    public void verifyCollisions(long currentTime, Player player, EnemyController enemyController) {
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
+        EnemyProjectileManager enemyProjectileManager = enemyController.getEnemyProjectileManager();
+        CircleManager circleManager = enemyController.getCircleManager();
+        DiamondManager diamondManager = enemyController.getDiamondManager();
 
         if(player.getState() == State.ACTIVE){
             /* colisões player */

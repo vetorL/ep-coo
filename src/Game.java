@@ -1,9 +1,6 @@
 public class Game {
 
     private Player player;
-    private CircleManager circleManager;
-    private DiamondManager diamondManager;
-    private EnemyProjectileManager enemyProjectileManager;
     private long currentTime;
     private long delta;
     private boolean running = true;
@@ -12,15 +9,12 @@ public class Game {
     private InputManager inputManager;
     private BackgroundManager backgroundManager;
     private GarbageController garbageController;
+    private final EnemyController enemyController;
 
-    public Game(Player player,
-                CircleManager circleManager, DiamondManager diamondManager, EnemyProjectileManager enemyProjectileManager,
-                long currentTime) {
+    public Game(Player player, long currentTime) {
         this.player = player;
-        this.circleManager = circleManager;
-        this.diamondManager = diamondManager;
-        this.enemyProjectileManager = enemyProjectileManager;
         this.currentTime = currentTime;
+        this.enemyController = new EnemyController();
         this.collisionManager = new CollisionManager();
         this.stateManager = new StateManager();
         this.inputManager = new InputManager();
@@ -47,13 +41,13 @@ public class Game {
         /* Verificação de colisões */
         /***************************/
 
-        collisionManager.verifyCollisions(currentTime, player, circleManager, diamondManager, enemyProjectileManager);
+        collisionManager.verifyCollisions(currentTime, player, enemyController);
 
         /***************************/
         /* Atualizações de estados */
         /***************************/
 
-        stateManager.updateStates(currentTime, player, circleManager, diamondManager, enemyProjectileManager, delta);
+        stateManager.updateStates(currentTime, player, enemyController, delta);
 
         /********************************************/
         /* Verificando entrada do usuário (teclado) */
@@ -65,13 +59,12 @@ public class Game {
         /* Desenho da cena */
         /*******************/
 
-        backgroundManager.drawScene(currentTime, delta, player,
-                circleManager, diamondManager, enemyProjectileManager);
+        backgroundManager.drawScene(currentTime, delta, player, enemyController);
 
         /*********************************/
         /* Limpa entidades inutilizadas */
         /********************************/
-        garbageController.dump(enemyProjectileManager, player.getProjectileManager(), diamondManager, circleManager);
+        garbageController.dump(player.getProjectileManager(), enemyController);
 
         /* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */
 
