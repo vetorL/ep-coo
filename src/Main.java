@@ -43,24 +43,6 @@ public class Main {
 
 		/* declaração de 'player' */
 		Player player = new Player(GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90);
-
-		/* variáveis dos inimigos tipo 1 */
-
-		CircleManager enemy1 = new CircleManager();
-		
-		/* variáveis dos inimigos tipo 2 */
-
-		DiamondManager enemy2 = new DiamondManager();
-
-		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2) */
-
-		EnemyProjectileManager enemyProjectileManager = new EnemyProjectileManager();
-		
-		/* inicializações */
-		
-		enemyProjectileManager.init();
-		enemy1.init();
-		enemy2.init();
 						
 		/* iniciado interface gráfica */
 		
@@ -86,7 +68,7 @@ public class Main {
 		/*************************************************************************************************/
 
 		Game game = new Game(
-				player, enemy1, enemy2, enemyProjectileManager, currentTime
+				player, currentTime
 		);
 
 		while(game.isRunning()){
