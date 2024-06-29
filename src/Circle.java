@@ -20,4 +20,17 @@ public class Circle extends Enemy {
         }
     }
 
+    public static Enemy launch(long currentTime) {
+        Enemy circle = new Circle();
+
+        circle.setX(Math.random() * (GameLib.WIDTH - 20.0) + 10.0);
+        circle.setY(-10.0);
+        circle.setV(0.20 + Math.random() * 0.15);
+        circle.setAngle(3 * Math.PI / 2);
+        circle.setRV(0.0);
+        circle.setState(State.ACTIVE);
+
+        return circle;
+    }
+
 }
