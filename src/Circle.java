@@ -22,16 +22,6 @@ public class Circle extends Enemy {
         }
     }
 
-    public void launch(long currentTime) {
-        setX(Math.random() * (GameLib.WIDTH - 20.0) + 10.0);
-        setY(-10.0);
-        setV(0.20 + Math.random() * 0.15);
-        setAngle(3 * Math.PI / 2);
-        setRV(0.0);
-        setState(State.ACTIVE);
-        setNextShot(currentTime + 500);
-    }
-
     public void setNextShot(long nextShot) {
         this.nextShot = nextShot;
     }

@@ -14,8 +14,6 @@ public abstract class Enemy {
 //    private long nextEnemy;					// instante em que um novo inimigo deve aparecer
     private Color color;
 
-    public abstract void launch(long currentTime);
-
     public abstract void draw(long currentTime);
 
     public Enemy(double radius, Color color) {
