@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class EnemyManager {
 
@@ -31,6 +32,18 @@ public abstract class EnemyManager {
         for(Enemy enemy : enemies) {
             enemy.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
         }
+    }
+
+    public void dump() {
+        List<Enemy> garbage = new ArrayList<Enemy>();
+
+        for(Enemy enemy : getEnemies()) {
+            if(enemy.getState() == State.INACTIVE) {
+                garbage.add(enemy);
+            }
+        }
+
+        getEnemies().removeAll(garbage);
     }
 
     public void explode(long currentTime, int i) {
