@@ -44,32 +44,16 @@ public class Player {
     public void fire(long currentTime) {
         if(currentTime > getNextShot()){
 
-            int free = Main.findFreeIndex(this.projectileManager.getStates());
+            Projectile projectile = new PlayerProjectile();
+            projectile.setX(getX());
+            projectile.setY(getY() - 2 * getRadius());
+            projectile.setVX(0.0);
+            projectile.setVY(-1.0);
+            projectile.setState(State.ACTIVE);
+            setNextShot(currentTime + 100);
 
-            if(free < this.projectileManager.getStates().length){
+            projectileManager.add(projectile);
 
-                double [] projectile_X = this.projectileManager.getX();
-                projectile_X[free] = getX();
-                this.projectileManager.setX(projectile_X);
-
-                double [] projectile_Y = this.projectileManager.getY();
-                projectile_Y[free] = getY() - 2 * getRadius();
-                this.projectileManager.setY(projectile_Y);
-
-                double [] projectile_VX = this.projectileManager.getVX();
-                projectile_VX[free] = 0.0;
-                this.projectileManager.setVX(projectile_VX);
-
-                double [] projectile_VY = this.projectileManager.getVY();
-                projectile_VY[free] = -1.0;
-                this.projectileManager.setVY(projectile_VY);
-
-                State [] projectile_states = this.projectileManager.getStates();
-                projectile_states[free] = State.ACTIVE;
-                this.projectileManager.setStates(projectile_states);
-
-                setNextShot(currentTime + 100);
-            }
         }
     }
 
