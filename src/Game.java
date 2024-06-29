@@ -2,7 +2,7 @@ public class Game {
 
     private Player player;
     private CircleManager enemy1;
-    private DiamondManager enemy2;
+    private DiamondManager diamondManager;
     private EnemyProjectileManager enemyProjectileManager;
     private Background firstBackground;
     private Background secondBackground;
@@ -16,11 +16,11 @@ public class Game {
     private GarbageController garbageController;
 
     public Game(Player player,
-                CircleManager enemy1, DiamondManager enemy2, EnemyProjectileManager enemyProjectileManager,
+                CircleManager enemy1, DiamondManager diamondManager, EnemyProjectileManager enemyProjectileManager,
                 Background firstBackground, Background secondBackground, long currentTime) {
         this.player = player;
         this.enemy1 = enemy1;
-        this.enemy2 = enemy2;
+        this.diamondManager = diamondManager;
         this.enemyProjectileManager = enemyProjectileManager;
         this.firstBackground = firstBackground;
         this.secondBackground = secondBackground;
@@ -51,13 +51,13 @@ public class Game {
         /* Verificação de colisões */
         /***************************/
 
-        collisionManager.verifyCollisions(currentTime, player, enemy1, enemy2, enemyProjectileManager);
+        collisionManager.verifyCollisions(currentTime, player, enemy1, diamondManager, enemyProjectileManager);
 
         /***************************/
         /* Atualizações de estados */
         /***************************/
 
-        stateManager.updateStates(currentTime, player, enemy1, enemy2, enemyProjectileManager, delta);
+        stateManager.updateStates(currentTime, player, enemy1, diamondManager, enemyProjectileManager, delta);
 
         /********************************************/
         /* Verificando entrada do usuário (teclado) */
@@ -70,12 +70,12 @@ public class Game {
         /*******************/
 
         backgroundManager.drawScene(currentTime, delta, player,
-                enemy1, enemy2, enemyProjectileManager, firstBackground, secondBackground);
+                enemy1, diamondManager, enemyProjectileManager, firstBackground, secondBackground);
 
         /*********************************/
         /* Limpa entidades inutilizadas */
         /********************************/
-        garbageController.dump(enemyProjectileManager, player.getProjectileManager());
+        garbageController.dump(enemyProjectileManager, player.getProjectileManager(), diamondManager);
 
         /* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */
 
