@@ -8,21 +8,6 @@ public class Main {
 		while(System.currentTimeMillis() < time) Thread.yield();
 	}
 	
-	/* Encontra e devolve o primeiro índice do  */
-	/* array referente a uma posição "inativa". */
-	
-	public static int findFreeIndex(State [] stateArray){
-		
-		int i;
-		
-		for(i = 0; i < stateArray.length; i++){
-			
-			if(stateArray[i] == State.INACTIVE) break;
-		}
-		
-		return i;
-	}
-	
 	/* Encontra e devolve o conjunto de índices (a quantidade */
 	/* de índices é defnida através do parâmetro "amount") do */
 	/* array, referentes a posições "inativas".               */ 
