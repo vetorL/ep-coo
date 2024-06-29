@@ -25,12 +25,6 @@ public abstract class EnemyManager {
         }
     };
 
-    public void checkCollisionWithPlayer(long currentTime, Player player) {
-        for(Hostile enemy : enemies) {
-            enemy.checkCollisionWithPlayer(currentTime, player);
-        }
-    }
-
     public void checkCollisionWithPlayerProjectile(long currentTime,
                                                    PlayerProjectileManager playerProjectileManager,
                                                    int k) {

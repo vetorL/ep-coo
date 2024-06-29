@@ -2,8 +2,6 @@ import java.awt.*;
 
 public interface Hostile {
 
-    void checkCollisionWithPlayer(long currentTime, Player player);
-
     void checkCollisionWithPlayerProjectile(long currentTime,
                                             PlayerProjectileManager playerProjectileManager,
                                             int k);

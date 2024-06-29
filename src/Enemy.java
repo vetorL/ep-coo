@@ -38,16 +38,6 @@ public abstract class Enemy implements Hostile {
         setState(State.INACTIVE);
     }
 
-    public void checkCollisionWithPlayer(long currentTime, Player player) {
-        double dx = getX() - player.getX();
-        double dy = getY() - player.getY();
-        double dist = Math.sqrt(dx * dx + dy * dy);
-
-        if(dist < (player.getRadius() + getRadius()) * 0.8){
-            player.explode(currentTime);
-        }
-    }
-
     public void checkCollisionWithPlayerProjectile(long currentTime,
                                                    PlayerProjectileManager playerProjectileManager,
                                                    int k) {
