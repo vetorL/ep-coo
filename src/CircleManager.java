@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class CircleManager extends EnemyManager {
 
-    public CircleManager(long nextEnemy) {
-        super(nextEnemy);
+    public CircleManager() {
+        super(System.currentTimeMillis() + 2000);
 
         int numberOfEnemies = 10;
         ArrayList<Enemy> enemies = new ArrayList<>();

@@ -6,8 +6,8 @@ public class DiamondManager extends EnemyManager {
     private double spawnX = GameLib.WIDTH * 0.20;			// coordenada x do próximo inimigo tipo 2 a aparecer
     private int count = 0;									// contagem de inimigos tipo 2 (usada na "formação de voo")
 
-    public DiamondManager(long nextEnemy) {
-        super(nextEnemy);
+    public DiamondManager() {
+        super(System.currentTimeMillis() + 7000);
 
         int numberOfEnemies = 10;
         ArrayList<Enemy> enemies = new ArrayList<>();

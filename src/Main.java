@@ -46,11 +46,11 @@ public class Main {
 
 		/* variáveis dos inimigos tipo 1 */
 
-		CircleManager enemy1 = new CircleManager(currentTime + 2000);
+		CircleManager enemy1 = new CircleManager();
 		
 		/* variáveis dos inimigos tipo 2 */
 
-		DiamondManager enemy2 = new DiamondManager(currentTime + 7000);
+		DiamondManager enemy2 = new DiamondManager();
 
 		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2) */
 
