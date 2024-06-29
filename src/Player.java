@@ -89,6 +89,15 @@ public class Player {
         setX(getX() + delta * getVY());
     }
 
+    public void checkForCollisions(long currentTime,
+                                   EnemyProjectileManager enemyProjectileManager,
+                                   CircleManager circleManager,
+                                   DiamondManager diamondManager) {
+        checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
+        checkCollisionWithEnemy(currentTime, circleManager);
+        checkCollisionWithEnemy(currentTime, diamondManager);
+    }
+
     public void checkCollisionWithEnemy(long currentTime, EnemyManager enemyManager) {
         for(Hostile enemy : enemyManager.getEnemies()) {
             double dx = enemy.getX() - getX();

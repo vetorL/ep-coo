@@ -6,15 +6,8 @@ public class CollisionManager {
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
 
         if(player.getState() == State.ACTIVE){
-
-            /* colisões player - projeteis (inimigo) */
-
-            player.checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
-
-            /* colisões player - inimigos */
-
-            player.checkCollisionWithEnemy(currentTime, circleManager);
-            player.checkCollisionWithEnemy(currentTime, diamondManager);
+            /* colisões player */
+            player.checkForCollisions(currentTime, enemyProjectileManager, circleManager, diamondManager);
         }
 
         /* colisões projeteis (player) - inimigos */
