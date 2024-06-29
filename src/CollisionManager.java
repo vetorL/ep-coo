@@ -1,7 +1,7 @@
 public class CollisionManager {
 
     public void verifyCollisions(long currentTime, Player player,
-                                 CircleManager enemy1, DiamondManager enemy2,
+                                 CircleManager circleManager, DiamondManager diamondManager,
                                  EnemyProjectileManager enemyProjectileManager) {
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
 
@@ -13,17 +13,16 @@ public class CollisionManager {
 
             /* colisões player - inimigos */
 
-            enemy1.checkCollisionWithPlayer(currentTime, player);
-
-            enemy2.checkCollisionWithPlayer(currentTime, player);
+            player.checkCollisionWithEnemy(currentTime, circleManager);
+            player.checkCollisionWithEnemy(currentTime, diamondManager);
         }
 
         /* colisões projeteis (player) - inimigos */
 
         for(int k = 0; k < playerProjectileManager.getStates().length; k++){
-            enemy1.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
+            circleManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
 
-            enemy2.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
+            diamondManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
         }
     }
 
