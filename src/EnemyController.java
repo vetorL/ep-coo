@@ -26,6 +26,20 @@ public class EnemyController {
         return enemyProjectileManager;
     }
 
+    public void draw(long currentTime) {
+        /* desenhando projeteis (inimigos) */
+
+        enemyProjectileManager.drawProjectiles();
+
+        /* desenhando inimigos (tipo 1) */
+
+        circleManager.draw(currentTime);
+
+        /* desenhando inimigos (tipo 2) */
+
+        diamondManager.draw(currentTime);
+    }
+
     public void dump() {
         this.diamondManager.dump();
         this.circleManager.dump();

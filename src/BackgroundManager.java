@@ -42,17 +42,9 @@ public class BackgroundManager {
 
         playerProjectileManager.drawProjectiles();
 
-        /* desenhando projeteis (inimigos) */
+        /* deenhando tudo associado a inimigos */
 
-        enemyProjectileManager.drawProjectiles();
-
-        /* desenhando inimigos (tipo 1) */
-
-        circleManager.draw(currentTime);
-
-        /* desenhando inimigos (tipo 2) */
-
-        diamondManager.draw(currentTime);
+        enemyController.draw(currentTime);
 
         /* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
 
