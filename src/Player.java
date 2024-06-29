@@ -12,7 +12,8 @@ public class Player {
     private double explosion_end = 0;                   // instante do final da explosão
     private double damage_end = 0;
     private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
-    private int healthpoints = 3;
+    private int totalHealthPoints = 3;
+    private int currenHealthPoints = 3;
 
     /* variáveis dos projéteis disparados pelo player */
     private final PlayerProjectileManager projectileManager =
@@ -41,8 +42,8 @@ public class Player {
     }
 
     public void takeDamage(long currentTime) {
-        healthpoints = healthpoints - 1;
-        if(healthpoints == 0){
+        currenHealthPoints = currenHealthPoints - 1;
+        if(currenHealthPoints == 0){
             explode(currentTime);
         } else {
             setState(State.DAMAGED);
@@ -54,6 +55,7 @@ public class Player {
         setState(State.EXPLODING);
         setExplosion_start(currentTime);
         setExplosion_end(currentTime + 2000);
+        currenHealthPoints = totalHealthPoints;
     }
 
     public void fire(long currentTime) {
