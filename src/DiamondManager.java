@@ -10,10 +10,9 @@ public class DiamondManager extends EnemyManager {
         super(nextEnemy);
 
         int numberOfEnemies = 10;
-        double enemyRadius = 12.0;
         ArrayList<Enemy> enemies = new ArrayList<>();
         for(int i = 0; i < numberOfEnemies; i++) {
-            enemies.add(new Diamond(enemyRadius));
+            enemies.add(new Diamond());
         }
 
         super.setEnemies(enemies);
@@ -21,48 +20,29 @@ public class DiamondManager extends EnemyManager {
 
     public void tryLaunch(long currentTime) {
         if(currentTime > getNextEnemy()){
+            Enemy diamond = new Diamond();
 
-            int free = Main.findFreeIndex(getStates());
+            diamond.setX(getSpawnX());
+            diamond.setY(-10.0);
+            diamond.setV(0.42);
+            diamond.setAngle((3 * Math.PI) / 2);
+            diamond.setRV(0.0);
+            diamond.setState(State.ACTIVE);
 
-            if(free < getStates().length){
+            getEnemies().add(diamond);
 
-                double [] enemy2_X = getX();
-                enemy2_X[free] = getSpawnX();
-                setX(enemy2_X);
+            this.count++;
 
-                double [] enemy2_Y = getY();
-                enemy2_Y[free] = -10.0;
-                setY(enemy2_Y);
+            if(getCount() < 10){
 
-                double [] enemy2_V = getV();
-                enemy2_V[free] = 0.42;
-                setV(enemy2_V);
+                setNextEnemy(currentTime + 120);
+            }
+            else {
 
-                double [] enemy2_angle = getAngle();
-                enemy2_angle[free] = (3 * Math.PI) / 2;
-                setAngle(enemy2_angle);
+                setCount(0);
+                setSpawnX(Math.random() > 0.5 ? GameLib.WIDTH * 0.2 : GameLib.WIDTH * 0.8);
+                setNextEnemy((long) (currentTime + 3000 + Math.random() * 3000));
 
-                double [] enemy2_RV = getRV();
-                enemy2_RV[free] = 0.0;
-                setRV(enemy2_RV);
-
-                State [] enemy2_states = getStates();
-                enemy2_states[free] = State.ACTIVE;
-                setStates(enemy2_states);
-
-                this.count++;
-
-                if(getCount() < 10){
-
-                    setNextEnemy(currentTime + 120);
-                }
-                else {
-
-                    setCount(0);
-                    setSpawnX(Math.random() > 0.5 ? GameLib.WIDTH * 0.2 : GameLib.WIDTH * 0.8);
-                    setNextEnemy((long) (currentTime + 3000 + Math.random() * 3000));
-
-                }
             }
         }
     }
