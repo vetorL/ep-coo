@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ProjectileManager {
@@ -102,5 +103,17 @@ public abstract class ProjectileManager {
         for (int i = 0; i < projectiles.size(); i++) {
             projectiles.get(i).setVY(vy[i]);
         }
+    }
+
+    public void dump() {
+        List<Projectile> garbage = new ArrayList<Projectile>();
+
+        for(Projectile projectile : getProjectiles()) {
+            if(projectile.getState() == State.INACTIVE) {
+                garbage.add(projectile);
+            }
+        }
+
+        getProjectiles().removeAll(garbage);
     }
 }
