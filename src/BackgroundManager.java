@@ -19,9 +19,6 @@ public class BackgroundManager {
     public void drawScene(long currentTime, long delta, Player player,
                      EnemyController enemyController) {
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
-        EnemyProjectileManager enemyProjectileManager = enemyController.getEnemyProjectileManager();
-        CircleManager circleManager = enemyController.getCircleManager();
-        DiamondManager diamondManager = enemyController.getDiamondManager();
 
         /* desenhando plano fundo distante */
 
