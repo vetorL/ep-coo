@@ -1,7 +1,7 @@
 public class InputManager {
 
     public boolean verifyInput(Player player, long currentTime, long delta) {
-        if(player.getState() == State.ACTIVE){
+        if(player.getState() == State.ACTIVE || player.getState() == State.POWERED){
 
             if(GameLib.iskeyPressed(GameLib.KEY_UP)) {
                 player.moveUp(delta);
@@ -16,7 +16,14 @@ public class InputManager {
                 player.moveRight(delta);
             }
             if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-                player.fire(currentTime);
+                if(player.getState() == State.POWERED){
+                    player.fire(currentTime, true);
+                    player.fire(currentTime, true);
+                    player.fire(currentTime, true);
+                    player.fire(currentTime, true);
+                    player.fire(currentTime, true);
+                }
+                player.fire(currentTime, false);
             }
         }
 

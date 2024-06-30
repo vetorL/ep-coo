@@ -11,6 +11,7 @@ public class Player {
     private double explosion_start = 0;                 // instante do início da explosão
     private double explosion_end = 0;                   // instante do final da explosão
     private double damage_end = 0;
+    private double power_end = 0;
     private long nextShot = System.currentTimeMillis(); // instante a partir do qual pode haver um próximo tiro
     private int totalHealthPoints = 10;
     private int currenHealthPoints = 10;
@@ -49,6 +50,9 @@ public class Player {
         } else if (getState() == State.DAMAGED) {
             GameLib.setColor(Color.WHITE);
             GameLib.drawPlayer(getX(), getY(), getRadius());
+        } else if (getState() == State.POWERED) {
+            GameLib.setColor(Color.GREEN);
+            GameLib.drawPlayer(getX(), getY(), getRadius());
         }
         else{
 
@@ -76,7 +80,7 @@ public class Player {
         currenHealthPoints = totalHealthPoints;
     }
 
-    public void fire(long currentTime) {
+    public void fire(long currentTime, boolean powered) {
         if(currentTime > getNextShot()){
 
             Projectile projectile = new PlayerProjectile();
@@ -85,6 +89,9 @@ public class Player {
             projectile.setVX(0.0);
             projectile.setVY(-1.0);
             projectile.setState(State.ACTIVE);
+            if(powered) {
+                setNextShot(currentTime + 1);
+            }
             setNextShot(currentTime + 100);
 
             projectileManager.add(projectile);
@@ -114,14 +121,19 @@ public class Player {
         CircleManager circleManager = enemyController.getCircleManager();
         DiamondManager diamondManager = enemyController.getDiamondManager();
         SlasherMcDasherManager slasherMcDasherManager = enemyController.getSlasherMcDasherManager();
+        PowerUpManager powerUpManager = enemyController.getPowerUpManager();
 
         boolean a = checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
         boolean b = checkCollisionWithEnemy(currentTime, circleManager);
         boolean c = checkCollisionWithEnemy(currentTime, diamondManager);
         boolean d = checkCollisionWithEnemy(currentTime, slasherMcDasherManager);
 
+        boolean e = checkCollisionWithEnemy(currentTime, powerUpManager);
+
         if(a || b || c || d) {
             takeDamage(currentTime);
+        } else if (e) {
+            powerUp(currentTime);
         }
     }
 
@@ -140,6 +152,12 @@ public class Player {
         }
 
         return collision;
+    }
+
+    public void powerUp(long currentTime) {
+        setState(State.POWERED);
+        setNextShot(currentTime + 1);
+        setPower_end(currentTime + 5000);
     }
 
     public boolean checkCollisionWithEnemyProjectile(long currentTime,
@@ -242,6 +260,14 @@ public class Player {
 
     public PlayerProjectileManager getProjectileManager() {
         return projectileManager;
+    }
+
+    public void setPower_end(double power_end) {
+        this.power_end = power_end;
+    }
+
+    public double getPower_end() {
+        return power_end;
     }
 
     public void setDamage_end(double damage_end) {

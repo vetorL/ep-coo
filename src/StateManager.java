@@ -25,6 +25,11 @@ public class StateManager {
 
                 player.setState(State.ACTIVE);
             }
+        } else if(player.getState() == State.POWERED){
+            if(currentTime > player.getPower_end()){
+
+                player.setState(State.ACTIVE);
+            }
         }
     }
 }

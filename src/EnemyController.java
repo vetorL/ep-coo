@@ -4,17 +4,20 @@ public class EnemyController {
     private final CircleManager circleManager;
     private final EnemyProjectileManager enemyProjectileManager;
     private final SlasherMcDasherManager slasherMcDasherManager;
+    private final PowerUpManager powerUpManager;
 
     public EnemyController() {
         this.diamondManager = new DiamondManager();
         this.circleManager = new CircleManager();
         this.enemyProjectileManager = new EnemyProjectileManager();
         this.slasherMcDasherManager = new SlasherMcDasherManager();
+        this.powerUpManager = new PowerUpManager();
 
         this.diamondManager.init();
         this.circleManager.init();
         this.enemyProjectileManager.init();
         this.slasherMcDasherManager.init();
+        this.powerUpManager.init();
     }
 
     public DiamondManager getDiamondManager() {
@@ -33,6 +36,10 @@ public class EnemyController {
         return slasherMcDasherManager;
     }
 
+    public PowerUpManager getPowerUpManager() {
+        return powerUpManager;
+    }
+
     public void checkCollisionWithPlayerProjectile(long currentTime, PlayerProjectileManager playerProjectileManager) {
         for(int k = 0; k < playerProjectileManager.getStates().length; k++){
             circleManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
@@ -40,6 +47,8 @@ public class EnemyController {
             diamondManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
 
             slasherMcDasherManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
+
+            powerUpManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
         }
     }
 
@@ -60,6 +69,10 @@ public class EnemyController {
 
         slasherMcDasherManager.updatePosition(currentTime, delta);
 
+        /* powerup tipo 1 */
+
+        powerUpManager.updatePosition(currentTime, delta);
+
         /* verificando se novos inimigos (tipo 1) devem ser "lançados" */
 
         circleManager.tryLaunch(currentTime);
@@ -71,6 +84,10 @@ public class EnemyController {
         /* verificando se novos inimigos (tipo 3) devem ser "lançados" */
 
         slasherMcDasherManager.tryLaunch(currentTime);
+
+        /* verificando se novos powerups (tipo 1) devem ser "lançados" */
+
+        powerUpManager.tryLaunch(currentTime);
     }
 
     public void draw(long currentTime) {
@@ -89,6 +106,10 @@ public class EnemyController {
         /* desenhando inimigos (tipo 3) */
 
         slasherMcDasherManager.draw(currentTime);
+
+        /* desenhando powerups (tipo 1) */
+
+        powerUpManager.draw(currentTime);
     }
 
     public void dump() {
@@ -96,5 +117,6 @@ public class EnemyController {
         this.circleManager.dump();
         this.enemyProjectileManager.dump();
         this.slasherMcDasherManager.dump();
+        this.powerUpManager.dump();
     }
 }
