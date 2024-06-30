@@ -16,14 +16,7 @@ public class InputManager {
                 player.moveRight(delta);
             }
             if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-                if(player.getState() == State.POWERED){
-                    player.fire(currentTime, true);
-                    player.fire(currentTime, true);
-                    player.fire(currentTime, true);
-                    player.fire(currentTime, true);
-                    player.fire(currentTime, true);
-                }
-                player.fire(currentTime, false);
+                player.fire(currentTime);
             }
         }
 

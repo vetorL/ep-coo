@@ -80,7 +80,7 @@ public class Player {
         currenHealthPoints = totalHealthPoints;
     }
 
-    public void fire(long currentTime, boolean powered) {
+    public void fire(long currentTime) {
         if(currentTime > getNextShot()){
 
             Projectile projectile = new PlayerProjectile();
@@ -89,9 +89,6 @@ public class Player {
             projectile.setVX(0.0);
             projectile.setVY(-1.0);
             projectile.setState(State.ACTIVE);
-            if(powered) {
-                setNextShot(currentTime + 1);
-            }
             setNextShot(currentTime + 100);
 
             projectileManager.add(projectile);
@@ -156,7 +153,6 @@ public class Player {
 
     public void powerUp(long currentTime) {
         setState(State.POWERED);
-        setNextShot(currentTime + 1);
         setPower_end(currentTime + 5000);
     }
 
