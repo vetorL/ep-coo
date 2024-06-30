@@ -109,14 +109,18 @@ public class Player {
     }
 
     public void checkForCollisions(long currentTime,
-                                   EnemyProjectileManager enemyProjectileManager,
-                                   CircleManager circleManager,
-                                   DiamondManager diamondManager) {
+                                   EnemyController enemyController) {
+        EnemyProjectileManager enemyProjectileManager = enemyController.getEnemyProjectileManager();
+        CircleManager circleManager = enemyController.getCircleManager();
+        DiamondManager diamondManager = enemyController.getDiamondManager();
+        SlasherMcDasherManager slasherMcDasherManager = enemyController.getSlasherMcDasherManager();
+
         boolean a = checkCollisionWithEnemyProjectile(currentTime, enemyProjectileManager);
         boolean b = checkCollisionWithEnemy(currentTime, circleManager);
         boolean c = checkCollisionWithEnemy(currentTime, diamondManager);
+        boolean d = checkCollisionWithEnemy(currentTime, slasherMcDasherManager);
 
-        if(a || b || c) {
+        if(a || b || c || d) {
             takeDamage(currentTime);
         }
     }
