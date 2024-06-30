@@ -3,7 +3,7 @@ import java.awt.*;
 public class SlasherMcDasher extends Enemy {
 
     public SlasherMcDasher() {
-        super(1.0, Color.GREEN);
+        super(50.0, Color.YELLOW);
     }
 
     public void draw(long currentTime) {
@@ -17,6 +17,9 @@ public class SlasherMcDasher extends Enemy {
 
             GameLib.setColor(getColor());
             GameLib.drawCircle(getX(), getY(), getRadius());
+
+            GameLib.drawLine(getX() - getRadius(), getY(), getX() + getRadius(), getY());
+            GameLib.drawLine(getX(), getY() - getRadius(), getX(), getY() + getRadius());
         }
     }
 
