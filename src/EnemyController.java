@@ -33,6 +33,16 @@ public class EnemyController {
         return slasherMcDasherManager;
     }
 
+    public void checkCollisionWithPlayerProjectile(long currentTime, PlayerProjectileManager playerProjectileManager) {
+        for(int k = 0; k < playerProjectileManager.getStates().length; k++){
+            circleManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
+
+            diamondManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
+
+            slasherMcDasherManager.checkCollisionWithPlayerProjectile(currentTime, playerProjectileManager, k);
+        }
+    }
+
     public void updateStates(long currentTime, long delta, Player player) {
         /* projeteis (inimigos) */
 
