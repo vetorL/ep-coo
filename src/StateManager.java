@@ -3,10 +3,6 @@ public class StateManager {
     public void updateStates(long currentTime, Player player,
                              EnemyController enemyController,
                              long delta) {
-        EnemyProjectileManager enemyProjectileManager = enemyController.getEnemyProjectileManager();
-        CircleManager circleManager = enemyController.getCircleManager();
-        DiamondManager diamondManager = enemyController.getDiamondManager();
-
         PlayerProjectileManager playerProjectileManager = player.getProjectileManager();
 
         /* projeteis (player) */
@@ -31,5 +27,4 @@ public class StateManager {
             }
         }
     }
-
 }
